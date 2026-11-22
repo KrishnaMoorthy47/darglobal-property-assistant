@@ -309,13 +309,6 @@ class Store:
             out += [dict(r) for r in rows]
         return out
 
-    def stats_overview(self) -> dict:
-        return {
-            "properties": self.db.execute("SELECT source, count(*) n FROM properties GROUP BY source").fetchall(),
-            "chunks": self.db.execute("SELECT source, doc_type, count(*) FROM chunks GROUP BY 1, 2").fetchall(),
-        }
-
-
 _store: Store | None = None
 
 
