@@ -1,5 +1,5 @@
 {
-  "run_at": "2026-11-22T16:36:09+00:00",
+  "run_at": "2026-11-22T17:54:47+00:00",
   "cases": 32,
   "mode": "retrieval+router-rules",
   "retrieval": {
@@ -143,6 +143,162 @@
         "top": [
           "https://www.darglobal.co.uk/press/dar-al-arkan-reveals-w-residences-dubai-downtown-overlooking-dubais-burj-khalifa-and-dubai-fountain",
           "https://www.darglobal.co.uk/insights/w-residences-downtown-dubai",
+          "https://www.darglobal.co.uk/press/dar-al-arkan-reveals-w-residences-dubai-downtown-overlooking-dubais-burj-khalifa-and-dubai-fountain"
+        ]
+      },
+      {
+        "id": "r15",
+        "question": "What is the typical price of a villa for sale in Riyadh?",
+        "rank": 1,
+        "top": [
+          "https://wasalt.sa/en",
+          "https://wasalt.sa/en",
+          "https://www.darglobal.co.uk/aida-360"
+        ]
+      }
+    ]
+  },
+  "retrieval_remote": {
+    "hit_at_5": 1.0,
+    "mrr": 0.956,
+    "rows": [
+      {
+        "id": "r01",
+        "question": "Tell me about Da Vinci Tower with Pagani interiors",
+        "rank": 1,
+        "top": [
+          "https://www.darglobal.co.uk/davinci-tower-by-pagani",
+          "https://www.darglobal.co.uk/blog/elevate-your-lifestyle-the-da-vinci-tower-interiors-by-pagani",
+          "https://www.darglobal.co.uk/davinci-tower-by-pagani"
+        ]
+      },
+      {
+        "id": "r02",
+        "question": "Which DarGlobal project in Qatar has Elie Saab interiors?",
+        "rank": 1,
+        "top": [
+          "https://www.darglobal.co.uk/insights/elie-saab-branded-apartments-qatar",
+          "https://www.darglobal.co.uk/blog/les-vagues-where-couture-meets-comfort-elie-saabs-visionary-real-estate-venture-in-qatar-ues-elie-saabs-visionary-real-estate-venture-in-qatar",
+          "https://www.darglobal.co.uk/partners/elie-saab"
+        ]
+      },
+      {
+        "id": "r03",
+        "question": "Missoni branded residences in Marbella Spain",
+        "rank": 3,
+        "top": [
+          "https://www.darglobal.co.uk/blog/premier-properties-exploring-marbellas-most-luxurious-neighborhoods",
+          "https://www.darglobal.co.uk/blog/premier-properties-exploring-marbellas-most-luxurious-neighborhoods",
+          "https://www.darglobal.co.uk/press/missoni-and-dar-global-launch-residential-development-project-in-southern-spain-duplicate-27740"
+        ]
+      },
+      {
+        "id": "r04",
+        "question": "Can I buy a DarGlobal property using cryptocurrency?",
+        "rank": 1,
+        "top": [
+          "https://www.darglobal.co.uk/Invest-crypto",
+          "https://www.darglobal.co.uk/insights/crypto-tokenized-luxury-developer",
+          "https://www.darglobal.co.uk/insights/crypto-tokenized-luxury-developer"
+        ]
+      },
+      {
+        "id": "r05",
+        "question": "Trump golf villas in AIDA Muscat Oman",
+        "rank": 1,
+        "top": [
+          "https://www.darglobal.co.uk/aida-trump-villas",
+          "https://www.darglobal.co.uk/blog/the-trump-golf-villas-luxury-living-with-a-view-at-aida-oman",
+          "https://www.darglobal.co.uk/aida-trump-villas"
+        ]
+      },
+      {
+        "id": "r06",
+        "question": "Mouawad branded villas in Riyadh",
+        "rank": 1,
+        "top": [
+          "https://www.darglobal.co.uk/insights/mouawad-branded-villas-riyadh",
+          "https://www.darglobal.co.uk/insights/mouawad-branded-villas-riyadh",
+          "https://www.darglobal.co.uk/neptune"
+        ]
+      },
+      {
+        "id": "r07",
+        "question": "Is DarGlobal listed on the London Stock Exchange?",
+        "rank": 1,
+        "top": [
+          "https://www.darglobal.co.uk/insights/lse-listed-developer-dubai",
+          "https://www.darglobal.co.uk/insights/lse-listed-developer-dubai",
+          "https://www.darglobal.co.uk/press/dar-al-arkan-succeeds-in-the-listing-of-its-international-arm-dar-global-on-the-london-stock-exchange-with-a-valuation-of-2250000000-saudi-riyals"
+        ]
+      },
+      {
+        "id": "r08",
+        "question": "Lamborghini inspired villas in Spain",
+        "rank": 1,
+        "top": [
+          "https://www.darglobal.co.uk/insights/lamborghini-inspired-villas-spain",
+          "https://www.darglobal.co.uk/one-of-one/painite-villas-design-inspired-by-Automobili-Lamborghini",
+          "https://www.darglobal.co.uk/blog/your-dream-villa-awaits-exclusive-luxury-villas-for-sale-in-spain"
+        ]
+      },
+      {
+        "id": "r09",
+        "question": "Golden visa homes with sea view in Oman",
+        "rank": 1,
+        "top": [
+          "https://www.darglobal.co.uk/insights/oman-golden-visa-sea-view-homes",
+          "https://www.darglobal.co.uk/insights/oman-golden-visa-sea-view-homes",
+          "https://www.darglobal.co.uk/insights/luxury-golf-villas-muscat-branded"
+        ]
+      },
+      {
+        "id": "r10",
+        "question": "Trump Tower Jeddah project",
+        "rank": 1,
+        "top": [
+          "https://www.darglobal.co.uk/trump-tower-jeddah",
+          "https://www.darglobal.co.uk/trump-tower-jeddah",
+          "https://www.darglobal.co.uk/blog/Elegance-in-the-Sky-DarGlobal-and-Trump-Organization-Unveil-Jeddah-Tower"
+        ]
+      },
+      {
+        "id": "r11",
+        "question": "luxury property in London Park Lane",
+        "rank": 1,
+        "top": [
+          "https://www.darglobal.co.uk/insights/149-old-park-lane-luxury-london",
+          "https://www.darglobal.co.uk/insights/149-old-park-lane-luxury-london",
+          "https://www.darglobal.co.uk/press/Dar-Global-completes-sale-of-historic-149-Old-Park-Lane-marketed-at-25mln"
+        ]
+      },
+      {
+        "id": "r12",
+        "question": "Aston Martin interiors apartments Ras Al Khaimah",
+        "rank": 1,
+        "top": [
+          "https://www.darglobal.co.uk/insights/aston-martin-interiors-apartments-ras-al-khaimah",
+          "https://www.darglobal.co.uk/insights/aston-martin-interiors-apartments-ras-al-khaimah",
+          "https://www.darglobal.co.uk/partners/aston-martin"
+        ]
+      },
+      {
+        "id": "r13",
+        "question": "D-Villas at Jumeirah Golf Estates",
+        "rank": 1,
+        "top": [
+          "https://www.darglobal.co.uk/d-villas-at-jge",
+          "https://www.darglobal.co.uk/press/DarGlobal–crafts–an–exceptional–residential–experience–with–the–launch–of–exclusive–DG–Villas–at–Jumeirah–Golf–Estates",
+          "https://www.darglobal.co.uk/blog/investing-in-jumeirah-golf-estates"
+        ]
+      },
+      {
+        "id": "r14",
+        "question": "W Residences Downtown Dubai",
+        "rank": 1,
+        "top": [
+          "https://www.darglobal.co.uk/insights/w-residences-downtown-dubai",
+          "https://www.darglobal.co.uk/partners/w-hotels",
           "https://www.darglobal.co.uk/press/dar-al-arkan-reveals-w-residences-dubai-downtown-overlooking-dubais-burj-khalifa-and-dubai-fountain"
         ]
       },
@@ -407,6 +563,8 @@
   "summary": {
     "retrieval_hit_at_5": 1.0,
     "retrieval_mrr": 0.967,
+    "retrieval_openrouter_hit_at_5": 1.0,
+    "retrieval_openrouter_mrr": 0.956,
     "router_rules_intent_accuracy": 0.9,
     "router_rules_filter_accuracy": 0.967,
     "router_llm_intent_accuracy": 1.0,

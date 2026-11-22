@@ -1,5 +1,5 @@
 {
-  "built_at": "2026-11-22T16:10:43+00:00",
+  "built_at": "2026-11-22T17:54:42+00:00",
   "scraped_window": {
     "darglobal": "2026-11-22",
     "wasalt": "2026-11-22"
@@ -37,9 +37,9 @@
       "rent": 340
     }
   },
-  "embedding_model": "paraphrase-multilingual-MiniLM-L12-v2 (int8 ONNX)",
+  "embedding_model": "nvidia/nemotron-3.5-embed-1b:free",
   "embeddings": {
-    "remote": null,
+    "remote": "nvidia/nemotron-3.5-embed-1b:free",
     "local": "paraphrase-multilingual-MiniLM-L12-v2 (int8 ONNX)"
   },
   "llm_enriched_projects": 40
