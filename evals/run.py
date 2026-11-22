@@ -16,6 +16,7 @@ from datetime import UTC, datetime
 from pathlib import Path
 
 from app.config import get_settings
+from app.llm.gateway import AllProvidersUnavailable
 from app.rag.router import route, rule_route
 from app.rag.store import QVec, get_store
 
@@ -141,8 +142,11 @@ async def main(llm_router: bool, answers: bool, remote_embeddings: bool = False)
 
     report["retrieval"] = await eval_retrieval(by_type["retrieval"])
     if remote_embeddings:
-        report["retrieval_remote"] = await eval_retrieval(by_type["retrieval"], remote=True)
-    elif prev.get("retrieval_remote"):
+        try:
+            report["retrieval_remote"] = await eval_retrieval(by_type["retrieval"], remote=True)
+        except AllProvidersUnavailable:
+            print("OpenRouter embeddings unavailable (daily limit?); keeping the previous OpenRouter retrieval score")
+    if "retrieval_remote" not in report and prev.get("retrieval_remote"):
         report["retrieval_remote"] = prev["retrieval_remote"]
     report["router"] = await eval_router(by_type["router"], llm_router)
     if not llm_router and "llm" in prev.get("router", {}):
