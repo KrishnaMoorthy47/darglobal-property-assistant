@@ -271,7 +271,7 @@ def embed_remote(texts: list[str], fetch: bool) -> np.ndarray | None:
     """
     import asyncio
 
-    from app.llm.gateway import Endpoint, get_gateway
+    from app.llm.gateway import Endpoint, InputRejected, get_gateway
 
     rc = CFG.embedder.remote
     cache_file = RAW / "embed_cache" / (re.sub(r"\W+", "_", rc.model) + ".npz")
@@ -298,24 +298,48 @@ def embed_remote(texts: list[str], fetch: bool) -> np.ndarray | None:
         g.chains["build"] = [Endpoint(p, rc.model, g.cfg.key_daily_caps.get(p, 48), 15)
                              for p in ("openrouter_3", "openrouter", "openrouter_2") if p in g.clients]
         log.info("embedding %d texts with %s in batches of %d", len(missing), rc.model, rc.batch_size)
-        for i in range(0, len(missing), rc.batch_size):
-            batch = missing[i:i + rc.batch_size]
+
+        async def embed_into_cache(batch: list[str]) -> None:
             try:
-                v, res = await g.embed([rc.doc_prefix + t for t in batch], chain="build")
+                v, _ = await g.embed([rc.doc_prefix + t for t in batch], chain="build")
+            except InputRejected:
+                # the provider's content screening refused something in this batch: halve until it's found
+                if len(batch) == 1:
+                    rejected.append(batch[0])
+                    return
+                await asyncio.sleep(rc.pause_s)
+                await embed_into_cache(batch[:len(batch) // 2])
+                await asyncio.sleep(rc.pause_s)
+                await embed_into_cache(batch[len(batch) // 2:])
+                return
+            for t, vec in zip(batch, v, strict=True):
+                cache[key(t)] = vec
+
+        for i in range(0, len(missing), rc.batch_size):
+            try:
+                await embed_into_cache(missing[i:i + rc.batch_size])
             except Exception as e:  # noqa: BLE001
                 log.error("stopped after %d/%d texts: %s (progress is cached; rerun later)", i, len(missing), e)
                 return False
-            for t, vec in zip(batch, v, strict=True):
-                cache[key(t)] = vec
             save()
-            log.info("  %d/%d via %s", min(i + rc.batch_size, len(missing)), len(missing), res.provider)
+            log.info("  %d/%d done", min(i + rc.batch_size, len(missing)), len(missing))
             await asyncio.sleep(rc.pause_s)
         return True
+
+    # texts the provider refuses get a zero vector: never found by vector search, still found by keyword search
+    rejected: list[str] = []
 
     # one event loop for all batches: the API client is tied to the loop it was first used in
     if missing and not asyncio.run(fetch_missing()):
         save()
         return None
+    if rejected:
+        dim = next(iter(cache.values())).shape[0]
+        for t in rejected:
+            cache[key(t)] = np.zeros(dim, dtype=np.float32)
+        save()
+        log.warning("%d texts were refused by the embedding provider's content screening: %s",
+                    len(rejected), [t[:60] for t in rejected])
     return np.stack([cache[key(t)] for t in texts]).astype(np.float32)
 
 

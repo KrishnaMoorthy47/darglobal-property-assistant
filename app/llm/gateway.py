@@ -23,6 +23,10 @@ from app.storage import get_sink
 
 log = logging.getLogger("gateway")
 
+class InputRejected(Exception):
+    """The provider refused the input itself (e.g. content screening); other keys would refuse it too."""
+
+
 class AllProvidersUnavailable(Exception):
     def __init__(self, attempts: list[dict]):
         super().__init__("all LLM providers unavailable")
@@ -275,6 +279,9 @@ class Gateway:
                 res.provider, res.model, res.prompt_tokens = e.provider, e.model, pt
                 res.attempts.append({"endpoint": e.name, "ok": True, "ms": round((time.perf_counter() - t0) * 1000)})
                 return v, res
+            except openai.UnprocessableEntityError as err:
+                _record(e, False)
+                raise InputRejected(str(err)) from err
             except Exception as err:  # noqa: BLE001
                 kind, rl = self._handle_error(e, err)
                 _record(e, False, rate_limited=rl)
