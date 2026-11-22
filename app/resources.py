@@ -1,6 +1,7 @@
 """Loads config/prompts.yaml and config/reference.yaml."""
 from __future__ import annotations
 
+import hashlib
 import re
 from functools import lru_cache
 
@@ -106,7 +107,10 @@ def _load(name: str) -> dict:
 
 @lru_cache
 def get_prompts() -> Prompts:
-    return Prompts.model_validate(_load("prompts.yaml"))
+    # the version is a fingerprint of the file: it changes whenever the wording does, which clears
+    # cached answers and is logged with each chat
+    raw = (CONFIG_DIR / "prompts.yaml").read_bytes()
+    return Prompts.model_validate({**_load("prompts.yaml"), "version": hashlib.sha1(raw).hexdigest()[:10]})
 
 
 @lru_cache
