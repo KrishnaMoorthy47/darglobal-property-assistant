@@ -7,12 +7,12 @@ from fastapi.testclient import TestClient
 
 @pytest.fixture(scope="module")
 def client(tmp_path_factory, monkeypatch_module):
-    monkeypatch_module.setenv("OPENROUTER_API_KEY", "")
-    monkeypatch_module.setenv("GROQ_API_KEY", "")
+    for key in ("OPENROUTER_API_KEY", "OPENROUTER_API_KEY_2", "OPENROUTER_API_KEY_3", "GROQ_API_KEY"):
+        monkeypatch_module.setenv(key, "")
     monkeypatch_module.setenv("ADMIN_TOKEN", "test-admin")
     monkeypatch_module.setenv("SUPABASE_URL", "")         # don't write to the real logs
     monkeypatch_module.setenv("SUPABASE_SECRET_KEY", "")
-    monkeypatch_module.setenv("RUNTIME_DB", str(tmp_path_factory.mktemp("rt") / "rt.db"))
+    monkeypatch_module.setenv("PATHS__RUNTIME_DB", str(tmp_path_factory.mktemp("rt") / "rt.db"))
     from app import config, db, storage
     from app.llm import gateway
     config.get_settings.cache_clear()
