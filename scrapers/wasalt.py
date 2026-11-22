@@ -19,6 +19,7 @@ from datetime import UTC, datetime
 from selectolax.lexbor import LexborHTMLParser as HTMLParser
 from tenacity import retry, retry_if_exception_type, stop_after_attempt, wait_exponential
 
+from app.resources import redact_contacts
 from scrapers.common import RAW_DIR, USER_AGENT, append_jsonl, load_done, polite_sleep
 
 log = logging.getLogger("wasalt")
@@ -130,7 +131,7 @@ def parse_listing(url: str, html: str) -> dict | None:
         "attributes": {k: v.get("value") for k, v in attrs.items()},
         "furnishing": info.get("furnishingType"),
         "amenities": [x for x in names("amenities") if x],
-        "description": _strip_html(info.get("description"))[:2000],
+        "description": redact_contacts(_strip_html(info.get("description")))[:2000],
         "is_verified": bool(d.get("isVerified")),
         "rega_licensed": bool(d.get("isRegaProp")),
         "project_id": info.get("projectId"),

@@ -111,3 +111,12 @@ def test_country_aliases_in_filters():
     s = get_store()
     rows = s._candidates(Filters(source="darglobal", country="UAE"))
     assert rows and {r["country"] for r in rows} == {"United Arab Emirates"}
+
+
+@pytest.mark.parametrize("text,removed", [
+    ("للتواصل 0551234567", True), ("واتس 055 123 4567", True), ("+966 551234567", True), ("mail a.b@x.com", True),
+    ("رقم الإعلان 7200123456", False), ("Price 1,400,000 SAR", False),
+])
+def test_contact_details_are_removed(text, removed):
+    from app.resources import redact_contacts
+    assert (redact_contacts(text) != text) is removed

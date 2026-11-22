@@ -1,0 +1,68 @@
+name: Build index
+
+# Rebuilds data/app.db and the embedding files from the scraped data in data/raw,
+# then commits them so Render redeploys with the new index.
+on:
+  workflow_dispatch:
+    inputs:
+      remote_embed:
+        description: "Fetch missing OpenRouter embeddings (uses OpenRouter quota)"
+        type: boolean
+        default: true
+      enrich:
+        description: "Re-extract DarGlobal project facts with an LLM"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+      OPENROUTER_API_KEY_2: ${{ secrets.OPENROUTER_API_KEY_2 }}
+      OPENROUTER_API_KEY_3: ${{ secrets.OPENROUTER_API_KEY_3 }}
+      GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -r requirements.txt pytest ruff
+      - name: Build the local embedding model
+        run: pip install onnx huggingface_hub && python -m app.rag.embedder prepare
+
+      # OpenRouter embeddings are cached per text, so a rerun only fetches what changed
+      - uses: actions/cache/restore@v4
+        with:
+          path: data/raw/embed_cache
+          key: embed-cache-${{ github.run_id }}
+          restore-keys: embed-cache-
+
+      - name: Build
+        run: python -m pipeline.build ${{ inputs.remote_embed && '--remote-embed' || '' }} ${{ inputs.enrich && '--enrich' || '' }}
+
+      - uses: actions/cache/save@v4
+        if: always()
+        with:
+          path: data/raw/embed_cache
+          key: embed-cache-${{ github.run_id }}
+
+      - run: pytest -q
+      - name: Evals
+        run: python -m evals.run ${{ inputs.remote_embed && '--remote-embeddings' || '' }}
+
+      - name: Commit the new index
+        run: |
+          git config user.name "Krishna Moorthy"
+          git config user.email "105190772+KrishnaMoorthy47@users.noreply.github.com"
+          git add data/app.db data/*.npy data/manifest.json data/raw/darglobal/enriched.json evals/report.json evals/report.md
+          if git diff --cached --quiet; then
+            echo "index unchanged"
+          else
+            git commit -m "Rebuild index"
+            git push
+          fi

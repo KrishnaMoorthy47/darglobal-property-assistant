@@ -75,7 +75,8 @@ Some choices worth explaining:
   as JSON in `__NEXT_DATA__`, which is easier to rely on than the HTML.
 
 Both scrapers follow robots.txt (and Wasalt's llms.txt), make about one request a second, and don't store
-owner or agent names or phone numbers. Counts and scrape dates are in `data/manifest.json`.
+owner or agent names or phone numbers. Some owners type their mobile number into the listing description, so
+phone numbers and e-mail addresses are stripped from the text as well, and the build fails if any are left. Counts and scrape dates are in `data/manifest.json`.
 
 ## Evaluation
 
@@ -112,7 +113,11 @@ docker build -t property-assistant .
 docker run -p 7860:7860 --env-file .env property-assistant
 ```
 
-To scrape again and rebuild the index (takes roughly 45 minutes):
+The index is built by the "Build index" GitHub Actions workflow (Actions tab, Run workflow). It rebuilds
+`data/app.db` and the embeddings from the scraped data in `data/raw`, runs the tests and evals, and commits the
+result, which triggers a Render deploy. It needs the OpenRouter and Groq keys as repository secrets.
+
+To scrape again and rebuild locally instead (takes roughly 45 minutes):
 
 ```bash
 python -m playwright install chromium

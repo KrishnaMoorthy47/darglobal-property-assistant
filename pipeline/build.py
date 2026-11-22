@@ -20,7 +20,7 @@ from pathlib import Path
 import numpy as np
 
 from app.config import get_settings
-from app.resources import get_prompts, get_reference
+from app.resources import get_prompts, get_reference, redact_contacts
 from pipeline.schemas import Chunk, Property
 
 log = logging.getLogger("build")
@@ -226,14 +226,14 @@ def wasalt() -> tuple[list[Property], list[Chunk]]:
             freq = "unverified"
         rent_note = f" per {freq.replace('ly', '')}" if freq and freq != "unverified" else (" (rent period unclear at source)" if freq else "")
         props.append(Property(
-            id=f"ws-{r['listing_id']}", source="wasalt", url=r["url"], name=r["title"], purpose=r["purpose"],
+            id=f"ws-{r['listing_id']}", source="wasalt", url=r["url"], name=redact_contacts(r["title"]), purpose=r["purpose"],
             property_type=r.get("property_type"), city=norm_city(r.get("city")), district=r.get("district"),
             country=r.get("country") or "Saudi Arabia", price=r["price"], currency=r.get("currency") or "SAR",
             price_usd=to_usd(r["price"], r.get("currency") or "SAR"), rent_frequency=freq,
             bedrooms=r.get("bedrooms"), bathrooms=r.get("bathrooms"), area_sqm=area,
             status="listed", image=r.get("image"), furnishing=r.get("furnishing"),
             description=f"{r['title']} for {r['purpose']} in {r.get('district') or ''}, {r.get('city') or ''}. "
-                        f"Price {r['price']:,.0f} {r.get('currency', 'SAR')}{rent_note}. {r.get('description', '')}"[:900],
+                        f"Price {r['price']:,.0f} {r.get('currency', 'SAR')}{rent_note}. {redact_contacts(r.get('description'))}"[:900],
             updated_at=r.get("updated_at"),
         ))
     log.info("wasalt listings usable: %d", len(props))
@@ -270,7 +270,6 @@ def embed_remote(texts: list[str], fetch: bool) -> np.ndarray | None:
     Without fetch, only the cache is used (no API calls); returns None if anything is missing.
     """
     import asyncio
-    import time
 
     from app.llm.gateway import Endpoint, get_gateway
 
@@ -293,7 +292,7 @@ def embed_remote(texts: list[str], fetch: bool) -> np.ndarray | None:
         ks = list(cache)
         np.savez(cache_file, keys=np.array(ks), vecs=np.stack([cache[k] for k in ks]))
 
-    if missing:
+    async def fetch_missing() -> bool:
         g = get_gateway()
         # the build may use each OpenRouter key's whole daily allowance, key 3 first
         g.chains["build"] = [Endpoint(p, rc.model, g.cfg.key_daily_caps.get(p, 48), 15)
@@ -302,16 +301,21 @@ def embed_remote(texts: list[str], fetch: bool) -> np.ndarray | None:
         for i in range(0, len(missing), rc.batch_size):
             batch = missing[i:i + rc.batch_size]
             try:
-                v, res = asyncio.run(g.embed([rc.doc_prefix + t for t in batch], chain="build"))
+                v, res = await g.embed([rc.doc_prefix + t for t in batch], chain="build")
             except Exception as e:  # noqa: BLE001
-                save()
                 log.error("stopped after %d/%d texts: %s (progress is cached; rerun later)", i, len(missing), e)
-                return None
+                return False
             for t, vec in zip(batch, v, strict=True):
                 cache[key(t)] = vec
             save()
             log.info("  %d/%d via %s", min(i + rc.batch_size, len(missing)), len(missing), res.provider)
-            time.sleep(rc.pause_s)
+            await asyncio.sleep(rc.pause_s)
+        return True
+
+    # one event loop for all batches: the API client is tied to the loop it was first used in
+    if missing and not asyncio.run(fetch_missing()):
+        save()
+        return None
     return np.stack([cache[key(t)] for t in texts]).astype(np.float32)
 
 
@@ -344,6 +348,10 @@ def main(enrich: bool, remote_embed: bool = False) -> None:
     dg_props, dg_chunks = darglobal(enrich)
     ws_props, ws_chunks = wasalt()
     props, chunks = dg_props + ws_props, dg_chunks + ws_chunks
+    leaks = [x.id for x in props if redact_contacts(x.description) != x.description]
+    leaks += [x.id for x in chunks if redact_contacts(x.text) != x.text]
+    if leaks:
+        raise SystemExit(f"contact details found in {len(leaks)} records, e.g. {leaks[:3]}; refusing to build")
     write_db(props, chunks)
 
     chunk_texts = [c.text for c in chunks]

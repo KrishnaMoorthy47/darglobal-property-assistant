@@ -7,6 +7,11 @@ default_currency: {darglobal: USD, wasalt: SAR}
 patterns:
   greeting: '^\s*(hi|hello|hey|salam|salaam|marhaba|مرحبا|السلام عليكم|good (morning|evening|afternoon)|thanks?|thank you|شكرا)[\s!.,]*$'
   injection: '(ignore (all|previous|the above)|disregard (the|all|previous)|system prompt|you are now|jailbreak|developer mode|reveal your (prompt|instructions))'
+  # contact details owners type into listing text; removed before anything is stored.
+  # Saudi mobiles: 05XXXXXXXX, 5XXXXXXXX, +966/00966/966 5XXXXXXXX (spaces or dashes allowed).
+  # 10-digit numbers after "رقم الإعلان" / "رخصة فال" are public ad licence numbers and are kept.
+  phone: '(?<![\d])(?:(?:\+|00)?966[\s-]?|0)?5\d(?:[\s-]?\d){7}(?![\d])'
+  email: '[\w.+-]+@[\w-]+\.[\w.-]+'
   contact_request: "(phone|mobile|whats ?app|contact (number|details|info)|e-?mail address|call the (agent|owner)|agent'?s number|owner'?s number|رقم (الجوال|الهاتف|التواصل)|واتساب)"
 
 stopwords: [a, an, the, of, in, "on", at, for, to, and, or, is, are, was, were, be, what, which, who, whom, how, much, many,

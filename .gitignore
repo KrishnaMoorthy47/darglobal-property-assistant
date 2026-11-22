@@ -10,4 +10,5 @@ __pycache__/
 runtime/
 logs/
 models/
-data/raw/
+data/raw/darglobal/html/
+data/raw/embed_cache/

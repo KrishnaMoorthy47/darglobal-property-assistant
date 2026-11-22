@@ -15,8 +15,9 @@ import time
 from datetime import UTC, datetime
 from pathlib import Path
 
+from app.config import get_settings
 from app.rag.router import route, rule_route
-from app.rag.store import get_store
+from app.rag.store import QVec, get_store
 
 HERE = Path(__file__).parent
 
@@ -26,13 +27,17 @@ def load_cases() -> list[dict]:
 
 
 async def eval_retrieval(cases: list[dict], remote: bool = False) -> dict:
-    """remote=True uses the OpenRouter embedding index (one API call per question)."""
+    """remote=True uses the OpenRouter embedding index (all questions in one API call)."""
     store = get_store()
+    if remote:
+        if not store.remote_ready:
+            raise SystemExit("no OpenRouter embedding index; build it with: python -m pipeline.build --remote-embed")
+        from app.llm.gateway import get_gateway
+        prefix = get_settings().embedder.remote.query_prefix
+        vecs, _ = await get_gateway().embed([prefix + c["question"].strip().lower() for c in cases])
     hits, rr, rows = 0, [], []
-    for c in cases:
-        qv = await store.embed_query(c["question"]) if remote else store.embed(c["question"])
-        if remote and qv.space != "remote":
-            raise SystemExit("OpenRouter embedding unavailable; not scoring the local model as if it were remote")
+    for i, c in enumerate(cases):
+        qv = QVec(vecs[i], "remote") if remote else store.embed(c["question"])
         res = store.search_chunks(c["question"], qv, source=c.get("source"), k=5)
         rank = next((i + 1 for i, h in enumerate(res) if any(e.lower() in h["url"].lower() for e in c["expect_url"])), None)
         hits += rank is not None

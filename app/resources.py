@@ -44,6 +44,8 @@ class Patterns(_Strict):
     greeting: str
     injection: str
     contact_request: str
+    phone: str
+    email: str
 
 
 class RuleRouter(_Strict):
@@ -102,9 +104,16 @@ def get_prompts() -> Prompts:
 @lru_cache
 def get_reference() -> Reference:
     ref = Reference.model_validate(_load("reference.yaml"))
-    for name in ("greeting", "injection", "contact_request"):
+    for name in ("greeting", "injection", "contact_request", "phone", "email"):
         ref.compiled(name)  # surface bad regexes at startup
     return ref
+
+
+def redact_contacts(text: str | None) -> str:
+    """Remove phone numbers and e-mail addresses from scraped text."""
+    ref = get_reference()
+    text = ref.compiled("phone").sub("[number removed]", text or "")
+    return ref.compiled("email").sub("[email removed]", text)
 
 
 def render(template: str, **values) -> str:

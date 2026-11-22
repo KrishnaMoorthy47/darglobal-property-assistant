@@ -111,7 +111,7 @@ embedder:
     model: "nvidia/nemotron-3.5-embed-1b:free"
     query_prefix: ""        # some embedding models want e.g. "query: " / "passage: "
     doc_prefix: ""
-    batch_size: 64          # texts per request when building the index
+    batch_size: 128         # texts per request when building the index
     pause_s: 4              # between requests when building (free models allow ~20 a minute)
 
 pipeline:

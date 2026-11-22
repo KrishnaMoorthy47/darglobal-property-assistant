@@ -1,0 +1,1023 @@
+{
+ "https://www.darglobal.co.uk/La-Collina": {
+  "name": "La Collina",
+  "city": "Jeddah",
+  "country": "Saudi Arabia",
+  "property_types": [
+   "apartments",
+   "commercial spaces"
+  ],
+  "status": "completed",
+  "bedrooms_min": null,
+  "bedrooms_max": null,
+  "area_min_sqft": null,
+  "area_max_sqft": null,
+  "starting_price": null,
+  "currency": null,
+  "brand_partner": null,
+  "handover": null,
+  "payment_plan": null,
+  "highlights": [
+   "Elevated living 85m above sea level",
+   "Direct access to Red Sea coastline",
+   "Modern Hijazi architecture",
+   "Master-planned community with schools and parks"
+  ]
+ },
+ "https://www.darglobal.co.uk/Sunrise-Haven-Luxury-Villas": {
+  "name": "Sunrise Haven",
+  "city": "Muscat",
+  "country": "Oman",
+  "property_types": [
+   "villas"
+  ],
+  "status": null,
+  "bedrooms_min": 3,
+  "bedrooms_max": 3,
+  "area_min_sqft": 1345,
+  "area_max_sqft": 1710,
+  "starting_price": null,
+  "currency": null,
+  "brand_partner": "Trump International Golf Club Oman",
+  "handover": null,
+  "payment_plan": null,
+  "highlights": [
+   "Fully furnished 3BR villas",
+   "Located in AIDA golfing destination",
+   "100% Freehold Ownership",
+   "0% Personal Income Tax"
+  ]
+ },
+ "https://www.darglobal.co.uk/Trump-International-Hotel-Tower-Dubai": {
+  "name": "Trump International Hotel & Tower Dubai",
+  "city": "Dubai",
+  "country": "UAE",
+  "property_types": [
+   "apartments",
+   "duplex penthouses",
+   "hotel rooms"
+  ],
+  "status": "under development",
+  "bedrooms_min": 1,
+  "bedrooms_max": 4,
+  "area_min_sqft": 764,
+  "area_max_sqft": 7720,
+  "starting_price": null,
+  "currency": null,
+  "brand_partner": "Trump",
+  "handover": "December 2031",
+  "payment_plan": null,
+  "highlights": [
+   "World's highest outdoor infinity pool",
+   "Five-star Trump hotel and members-only club",
+   "Guaranteed sea or Burj Khalifa views",
+   "Direct access to Downtown Dubai"
+  ]
+ },
+ "https://www.darglobal.co.uk/aida-360": {
+  "name": "AIDA 360°",
+  "city": "Muscat",
+  "country": "Oman",
+  "property_types": [
+   "apartments"
+  ],
+  "status": null,
+  "bedrooms_min": null,
+  "bedrooms_max": null,
+  "area_min_sqft": null,
+  "area_max_sqft": null,
+  "starting_price": null,
+  "currency": null,
+  "brand_partner": "Dar Global",
+  "handover": null,
+  "payment_plan": null,
+  "highlights": [
+   "Residency Permit Facilitation",
+   "Pre-approved for Airbnb and Under The Doormat",
+   "Remote Handover & Key Release",
+   "Free Assignment Service"
+  ]
+ },
+ "https://www.darglobal.co.uk/aida-coastal-investment-villas": {
+  "name": "AIDA Coastal Investment Villas",
+  "city": "Muscat",
+  "country": "Oman",
+  "property_types": [
+   "villas"
+  ],
+  "status": "under development",
+  "bedrooms_min": 3,
+  "bedrooms_max": 3,
+  "area_min_sqft": 1345,
+  "area_max_sqft": 2410,
+  "starting_price": null,
+  "currency": null,
+  "brand_partner": null,
+  "handover": null,
+  "payment_plan": null,
+  "highlights": [
+   "130 meters above pristine shores",
+   "100% Freehold Ownership for all nationalities",
+   "0% Personal Income Tax",
+   "25 minutes from Muscat International Airport"
+  ]
+ },
+ "https://www.darglobal.co.uk/aida-trump-international-apartments": {
+  "name": "Trump Furnished Residences",
+  "city": "Muscat",
+  "country": "Oman",
+  "property_types": [
+   "apartments"
+  ],
+  "status": null,
+  "bedrooms_min": null,
+  "bedrooms_max": null,
+  "area_min_sqft": null,
+  "area_max_sqft": null,
+  "starting_price": null,
+  "currency": null,
+  "brand_partner": "Trump",
+  "handover": null,
+  "payment_plan": null,
+  "highlights": [
+   "Managed by Trump",
+   "Furnished residences",
+   "Close to 5-star landmarks",
+   "100% Freehold Ownership"
+  ]
+ },
+ "https://www.darglobal.co.uk/aida-trump-international-cliff-villas": {
+  "name": "Trump Cliff Villas AIDA",
+  "city": "Muscat",
+  "country": "Oman",
+  "property_types": [
+   "villas"
+  ],
+  "status": "under development",
+  "bedrooms_min": 3,
+  "bedrooms_max": 3,
+  "area_min_sqft": 1378,
+  "area_max_sqft": 1783,
+  "starting_price": null,
+  "currency": null,
+  "brand_partner": "Trump",
+  "handover": "December 2028",
+  "payment_plan": null,
+  "highlights": [
+   "Fully furnished 3-bedroom villas",
+   "Private pool with sea views",
+   "Golf Club Social Membership included",
+   "Located beside Trump International Hotel"
+  ]
+ },
+ "https://www.darglobal.co.uk/aida-trump-international-hotel": {
+  "name": "Trump International Hotel Oman",
+  "city": "Muscat",
+  "country": "Oman",
+  "property_types": [
+   "hotel rooms"
+  ],
+  "status": "under development",
+  "bedrooms_min": null,
+  "bedrooms_max": null,
+  "area_min_sqft": 570,
+  "area_max_sqft": 1807,
+  "starting_price": null,
+  "currency": null,
+  "brand_partner": "Trump Hotels",
+  "handover": "December 2028",
+  "payment_plan": null,
+  "highlights": [
+   "Freehold ownership of hotel rooms",
+   "2 weeks complimentary holiday annually",
+   "Managed by Trump Hotels",
+   "Located in AIDA, Muscat"
+  ]
+ },
+ "https://www.darglobal.co.uk/aida-trump-villas": {
+  "name": "Trump Golf Villas at AIDA",
+  "city": "Muscat",
+  "country": "Oman",
+  "property_types": [
+   "villas"
+  ],
+  "status": "under development",
+  "bedrooms_min": 5,
+  "bedrooms_max": 5,
+  "area_min_sqft": 4367,
+  "area_max_sqft": null,
+  "starting_price": null,
+  "currency": null,
+  "brand_partner": "Trump",
+  "handover": "December 2028",
+  "payment_plan": null,
+  "highlights": [
+   "Positioned along Trump International Championship Golf Course",
+   "Includes branded golf cart for every residence",
+   "100% Freehold Ownership for all nationalities",
+   "25 minutes from Muscat International Airport"
+  ]
+ },
+ "https://www.darglobal.co.uk/amaya/amaya-plots": {
+  "name": "Amaya",
+  "city": "Jeddah",
+  "country": "Saudi Arabia",
+  "property_types": [
+   "plots",
+   "villas",
+   "townhouses",
+   "residential towers",
+   "commercial towers",
+   "serviced residences"
+  ],
+  "status": "under development",
+  "bedrooms_min": null,
+  "bedrooms_max": null,
+  "area_min_sqft": null,
+  "area_max_sqft": null,
+  "starting_price": null,
+  "currency": null,
+  "brand_partner": "Trump Plaza",
+  "handover": null,
+  "payment_plan": null,
+  "highlights": [
+   "1,000,000 sqm master-planned community in central Jeddah",
+   "Full freehold ownership available to foreign investors",
+   "Residency eligibility via property investment SAR 4M+",
+   "Located on King Abdulaziz Road with new tunnel access"
+  ]
+ },
+ "https://www.darglobal.co.uk/amaya/padel-living": {
+  "name": "Padel Living Residences",
+  "city": "Jeddah",
+  "country": "Saudi Arabia",
+  "property_types": [
+   "apartments"
+  ],
+  "status": "launching",
+  "bedrooms_min": null,
+  "bedrooms_max": null,
+  "area_min_sqft": null,
+  "area_max_sqft": null,
+  "starting_price": null,
+  "currency": null,
+  "brand_partner": null,
+  "handover": null,
+  "payment_plan": null,
+  "highlights": [
+   "Exclusive rooftop padel courts available 24/7",
+   "Located on King Abdulaziz Road in central Jeddah",
+   "Full freehold ownership available to foreign investors",
+   "Residency eligibility via property investment SAR 4M+"
+  ]
+ },
+ "https://www.darglobal.co.uk/d-villas-at-jge": {
+  "name": "D-Villas",
+  "city": "Dubai",
+  "country": "United Arab Emirates",
+  "property_types": [
+   "villas"
+  ],
+  "status": "under development",
+  "bedrooms_min": 4,
+  "bedrooms_max": 5,
+  "area_min_sqft": 2091,
+  "area_max_sqft": 4048,
+  "starting_price": null,
+  "currency": null,
+  "brand_partner": "Dar Global",
+  "handover": null,
+  "payment_plan": null,
+  "highlights": [
+   "Two championship golf courses",
+   "Tommy Fleetwood Golf Academy",
+   "Olympic-sized and resort-style pools",
+   "10 year Golden Visa with 2 million Dirhams investment"
+  ]
+ },
+ "https://www.darglobal.co.uk/davinci-tower-by-pagani": {
+  "name": "Da Vinci Tower",
+  "city": "Dubai",
+  "country": "United Arab Emirates",
+  "property_types": [
+   "apartments"
+  ],
+  "status": "completed",
+  "bedrooms_min": 2,
+  "bedrooms_max": 4,
+  "area_min_sqft": 800,
+  "area_max_sqft": 14768,
+  "starting_price": null,
+  "currency": null,
+  "brand_partner": "Pagani",
+  "handover": null,
+  "payment_plan": null,
+  "highlights": [
+   "World's first residences by Pagani",
+   "Rooftop pool overlooking Downtown Dubai",
+   "24/7 Crafted Concierge services",
+   "Bespoke interiors with Italian marble and carbon fibre"
+  ]
+ },
+ "https://www.darglobal.co.uk/fairway-villas-aida-oman": {
+  "name": "Fairway Villas Aida",
+  "city": "Muscat",
+  "country": "Oman",
+  "property_types": [
+   "villas"
+  ],
+  "status": "under development",
+  "bedrooms_min": 4,
+  "bedrooms_max": 5,
+  "area_min_sqft": 3103,
+  "area_max_sqft": 4340,
+  "starting_price": null,
+  "currency": null,
+  "brand_partner": "Trump International Golf Club",
+  "handover": null,
+  "payment_plan": null,
+  "highlights": [
+   "Located on the frontline of Trump International Golf Club",
+   "130 meters above the Muscat Riviera",
+   "Close proximity to Ritz Carlton and Shangri-La",
+   "100% Freehold Ownership for all nationalities"
+  ]
+ },
+ "https://www.darglobal.co.uk/invest-in-aida": {
+  "name": "Aida",
+  "city": "Muscat",
+  "country": "Oman",
+  "property_types": [
+   "villas",
+   "apartments"
+  ],
+  "status": "under development",
+  "bedrooms_min": 1,
+  "bedrooms_max": 3,
+  "area_min_sqft": null,
+  "area_max_sqft": null,
+  "starting_price": null,
+  "currency": null,
+  "brand_partner": "Trump International Golf Club",
+  "handover": null,
+  "payment_plan": null,
+  "highlights": [
+   "130m above the shoreline",
+   "Limited-edition 3-bedroom villas",
+   "1 to 3-bedroom branded apartments",
+   "25 minutes from Muscat city center"
+  ]
+ },
+ "https://www.darglobal.co.uk/les-vagues": {
+  "name": "Les Vagues by Elie Saab",
+  "city": "Doha",
+  "country": "Qatar",
+  "property_types": [
+   "apartments"
+  ],
+  "status": "under development",
+  "bedrooms_min": 1,
+  "bedrooms_max": 3,
+  "area_min_sqft": 907,
+  "area_max_sqft": 4148,
+  "starting_price": null,
+  "currency": null,
+  "brand_partner": "Elie Saab",
+  "handover": "December 2027",
+  "payment_plan": null,
+  "highlights": [
+   "Seafront location on Qetaifan Island North",
+   "Elie Saab interior design with marble and bronze finishes",
+   "Infinity swimming pool and state-of-the-art fitness center",
+   "Access to 7km beach shoreline and 18-hole golf course"
+  ]
+ },
+ "https://www.darglobal.co.uk/marea": {
+  "name": "Marea, Interiors by Missoni",
+  "city": "Cortesin",
+  "country": "Spain",
+  "property_types": [
+   "apartments"
+  ],
+  "status": "under development",
+  "bedrooms_min": 2,
+  "bedrooms_max": 4,
+  "area_min_sqft": 1582,
+  "area_max_sqft": 4115,
+  "starting_price": null,
+  "currency": null,
+  "brand_partner": "Missoni",
+  "handover": "December 2027",
+  "payment_plan": null,
+  "highlights": [
+   "Gated community within Finca Cortesin estate",
+   "270-degree panorama from Marbella to Gibraltar",
+   "Missoni-designed interiors",
+   "Infinity pool and state-of-the-art gym"
+  ]
+ },
+ "https://www.darglobal.co.uk/marriott-residences-aida-oman": {
+  "name": "Marriott Residences Aida, Oman",
+  "city": "Muscat",
+  "country": "Oman",
+  "property_types": [
+   "apartments"
+  ],
+  "status": "under development",
+  "bedrooms_min": 1,
+  "bedrooms_max": 3,
+  "area_min_sqft": 645,
+  "area_max_sqft": 2088,
+  "starting_price": null,
+  "currency": null,
+  "brand_partner": "Marriott",
+  "handover": null,
+  "payment_plan": null,
+  "highlights": [
+   "Fully furnished 1-3 bedroom apartments",
+   "À la carte hotel services including concierge and valet",
+   "Located 130 metres above the Muscat Riviera",
+   "25 minutes from Muscat International Airport"
+  ]
+ },
+ "https://www.darglobal.co.uk/neptune": {
+  "name": "Neptune, Interiors by Mouawad",
+  "city": "Riyadh",
+  "country": "Saudi Arabia",
+  "property_types": [
+   "villas"
+  ],
+  "status": "under development",
+  "bedrooms_min": 5,
+  "bedrooms_max": 5,
+  "area_min_sqft": 3229,
+  "area_max_sqft": 4818,
+  "starting_price": null,
+  "currency": null,
+  "brand_partner": "Mouawad",
+  "handover": "December 2027",
+  "payment_plan": null,
+  "highlights": [
+   "Interiors designed by Mouawad",
+   "Located near Expo 2030 site",
+   "Full freehold ownership for foreign investors",
+   "Limited edition collection"
+  ]
+ },
+ "https://www.darglobal.co.uk/one-of-one/THE-ALBERT-HALL-MANSION": {
+  "name": "The Albert Hall Mansion",
+  "city": "London",
+  "country": "United Kingdom",
+  "property_types": [
+   "apartments"
+  ],
+  "status": null,
+  "bedrooms_min": null,
+  "bedrooms_max": null,
+  "area_min_sqft": null,
+  "area_max_sqft": null,
+  "starting_price": null,
+  "currency": null,
+  "brand_partner": null,
+  "handover": null,
+  "payment_plan": null,
+  "highlights": [
+   "Overlooks Royal Albert Hall",
+   "Victorian heritage building",
+   "Located in South Kensington",
+   "Designed by Richard Norman Shaw"
+  ]
+ },
+ "https://www.darglobal.co.uk/one-of-one/fendi-casa-azure-oceanfront-villas": {
+  "name": "Azure Oceanfront Villas",
+  "city": "Muscat",
+  "country": "Oman",
+  "property_types": [
+   "villas"
+  ],
+  "status": "launching",
+  "bedrooms_min": 5,
+  "bedrooms_max": 5,
+  "area_min_sqft": null,
+  "area_max_sqft": null,
+  "starting_price": null,
+  "currency": null,
+  "brand_partner": "Fendi Casa",
+  "handover": null,
+  "payment_plan": null,
+  "highlights": [
+   "19 limited five-bedroom villas",
+   "Suspended 130 meters above the sea",
+   "Located in AIDA gated community",
+   "Infinity-edge swimming pools"
+  ]
+ },
+ "https://www.darglobal.co.uk/one-of-one/one-of-one-unlisted-by-pagani": {
+  "name": "One-Of-One Unlisted by Pagani",
+  "city": "Dubai",
+  "country": "UAE",
+  "property_types": [
+   "villas"
+  ],
+  "status": "launching",
+  "bedrooms_min": null,
+  "bedrooms_max": null,
+  "area_min_sqft": null,
+  "area_max_sqft": null,
+  "starting_price": null,
+  "currency": null,
+  "brand_partner": "Pagani",
+  "handover": null,
+  "payment_plan": null,
+  "highlights": [
+   "Private entrance and elevator",
+   "Private terrace and pool on Dubai Canal",
+   "Interiors by Pagani",
+   "Prime location near Burj Khalifa and Dubai Mall"
+  ]
+ },
+ "https://www.darglobal.co.uk/one-of-one/painite-villas-design-inspired-by-Automobili-Lamborghini": {
+  "name": "Painite Villas",
+  "city": "Benahavis",
+  "country": "Spain",
+  "property_types": [
+   "villas"
+  ],
+  "status": "launching",
+  "bedrooms_min": 6,
+  "bedrooms_max": 6,
+  "area_min_sqft": null,
+  "area_max_sqft": null,
+  "starting_price": null,
+  "currency": null,
+  "brand_partner": "Automobili Lamborghini",
+  "handover": null,
+  "payment_plan": null,
+  "highlights": [
+   "Private Sky Car Lift with Lamborghini technology",
+   "Panoramic views of the Mediterranean Sea",
+   "Located in the hills of Benahavis",
+   "Six luxurious bedrooms with roof terraces"
+  ]
+ },
+ "https://www.darglobal.co.uk/one-of-one/project-pagani": {
+  "name": "Pagani Penthouse",
+  "city": "Dubai",
+  "country": "UAE",
+  "property_types": [
+   "penthouses"
+  ],
+  "status": "sold out",
+  "bedrooms_min": null,
+  "bedrooms_max": null,
+  "area_min_sqft": 14768,
+  "area_max_sqft": 14768,
+  "starting_price": null,
+  "currency": null,
+  "brand_partner": "Pagani",
+  "handover": null,
+  "payment_plan": null,
+  "highlights": [
+   "Located in The Da Vinci Tower",
+   "Features a geometric glass sphere with 360-degree views",
+   "Includes a personal elevator",
+   "Interiors inspired by Pagani automotive design"
+  ]
+ },
+ "https://www.darglobal.co.uk/one-of-one/top-of-the-astera": {
+  "name": "Top of the Astera",
+  "city": "Ras Al Khaimah",
+  "country": "UAE",
+  "property_types": [
+   "villas"
+  ],
+  "status": null,
+  "bedrooms_min": null,
+  "bedrooms_max": null,
+  "area_min_sqft": null,
+  "area_max_sqft": null,
+  "starting_price": null,
+  "currency": null,
+  "brand_partner": "Aston Martin",
+  "handover": null,
+  "payment_plan": null,
+  "highlights": [
+   "World's first villa in the sky",
+   "Interiors by Aston Martin",
+   "Direct beach access",
+   "Private elevator access"
+  ]
+ },
+ "https://www.darglobal.co.uk/one-of-one/trump-penthouse": {
+  "name": "Trump Penthouse",
+  "city": "Dubai",
+  "country": "UAE",
+  "property_types": [
+   "penthouses"
+  ],
+  "status": "launching",
+  "bedrooms_min": null,
+  "bedrooms_max": null,
+  "area_min_sqft": null,
+  "area_max_sqft": null,
+  "starting_price": null,
+  "currency": null,
+  "brand_partner": "Trump",
+  "handover": null,
+  "payment_plan": null,
+  "highlights": [
+   "Only two duplex penthouses in the tower",
+   "Private pools facing Burj Khalifa",
+   "180° views from Downtown to the sea",
+   "Private elevator and double-height ceilings"
+  ]
+ },
+ "https://www.darglobal.co.uk/rayana/darglobal-mansions": {
+  "name": "DarGlobal Mansions",
+  "city": "Riyadh",
+  "country": "Saudi Arabia",
+  "property_types": [
+   "mansions"
+  ],
+  "status": "under development",
+  "bedrooms_min": null,
+  "bedrooms_max": null,
+  "area_min_sqft": 12565,
+  "area_max_sqft": 22010,
+  "starting_price": null,
+  "currency": null,
+  "brand_partner": null,
+  "handover": null,
+  "payment_plan": null,
+  "highlights": [
+   "Located in Rayana, Diriyah UNESCO World Heritage district",
+   "Ultra-luxury fitted interiors with contemporary Najdi architecture",
+   "Full freehold ownership available to foreign investors",
+   "Residency eligibility via property investment SAR 4M+"
+  ]
+ },
+ "https://www.darglobal.co.uk/rayana/darglobal-mansions-fendi-casa": {
+  "name": "Darglobal Mansions - Fendi Casa",
+  "city": "Riyadh",
+  "country": "Saudi Arabia",
+  "property_types": [
+   "mansions"
+  ],
+  "status": "under development",
+  "bedrooms_min": null,
+  "bedrooms_max": null,
+  "area_min_sqft": 22175,
+  "area_max_sqft": 49610,
+  "starting_price": null,
+  "currency": null,
+  "brand_partner": "Fendi Casa",
+  "handover": null,
+  "payment_plan": null,
+  "highlights": [
+   "Exclusive collection of just seven mansions",
+   "Interiors by Fendi Casa",
+   "Private gated community in Rayana, Wadi Safar",
+   "Access to Trump International Golf Club"
+  ]
+ },
+ "https://www.darglobal.co.uk/rayana/trump-international-qatar": {
+  "name": "Trump International Simaisma, Qatar",
+  "city": "Simaisma",
+  "country": "Qatar",
+  "property_types": [
+   "villas"
+  ],
+  "status": "under development",
+  "bedrooms_min": 3,
+  "bedrooms_max": 5,
+  "area_min_sqft": 2144,
+  "area_max_sqft": 4852,
+  "starting_price": null,
+  "currency": null,
+  "brand_partner": "The Trump Organization",
+  "handover": null,
+  "payment_plan": null,
+  "highlights": [
+   "7 km of waterfront access",
+   "18-hole championship golf course",
+   "Freehold investment with Golden Visa eligibility",
+   "40 km north of Doha"
+  ]
+ },
+ "https://www.darglobal.co.uk/rayana/trump-mansions": {
+  "name": "Trump Mansions",
+  "city": "Riyadh",
+  "country": "Saudi Arabia",
+  "property_types": [
+   "mansions"
+  ],
+  "status": "under development",
+  "bedrooms_min": null,
+  "bedrooms_max": null,
+  "area_min_sqft": 13455,
+  "area_max_sqft": 58111,
+  "starting_price": null,
+  "currency": null,
+  "brand_partner": "Trump",
+  "handover": null,
+  "payment_plan": null,
+  "highlights": [
+   "Located inside Rayana, Wadi Safar double gated community",
+   "Overlooks 18-Hole Championship Golf Course",
+   "Access to Trump International Hotel and Golf Club",
+   "Full freehold ownership available to foreign investors"
+  ]
+ },
+ "https://www.darglobal.co.uk/sohar-islamic": {
+  "name": null,
+  "city": "Sohar",
+  "country": "Oman",
+  "property_types": [],
+  "status": null,
+  "bedrooms_min": null,
+  "bedrooms_max": null,
+  "area_min_sqft": null,
+  "area_max_sqft": null,
+  "starting_price": null,
+  "currency": "OMR",
+  "brand_partner": "Sohar Islamic",
+  "handover": null,
+  "payment_plan": "Finance up to 50% of Property Value up to OMR 250,000 at 6% P.A.",
+  "highlights": [
+   "Oman's first housing finance solution for residents and non-residents",
+   "Exclusive partnership between Dar Global & Sohar Islamic",
+   "Open to Residents and Non-Residents",
+   "Easier, Faster, Hassle Free Home Ownership"
+  ]
+ },
+ "https://www.darglobal.co.uk/the-astera": {
+  "name": "The Astera, Interiors by Aston Martin",
+  "city": "Ras Al Khaimah",
+  "country": "United Arab Emirates",
+  "property_types": [
+   "apartments",
+   "villas"
+  ],
+  "status": "under development",
+  "bedrooms_min": 1,
+  "bedrooms_max": 3,
+  "area_min_sqft": 682,
+  "area_max_sqft": 12277,
+  "starting_price": null,
+  "currency": null,
+  "brand_partner": "Aston Martin",
+  "handover": "December 2028",
+  "payment_plan": null,
+  "highlights": [
+   "Direct beach access",
+   "Aston Martin-designed interiors",
+   "Infinity pool and spa",
+   "5 minutes from Wynn Resort"
+  ]
+ },
+ "https://www.darglobal.co.uk/the-great-escape-1-aida-oman": {
+  "name": "The Great Escape 1",
+  "city": "Muscat",
+  "country": "Oman",
+  "property_types": [
+   "apartments"
+  ],
+  "status": "sold out",
+  "bedrooms_min": 1,
+  "bedrooms_max": 3,
+  "area_min_sqft": 700,
+  "area_max_sqft": 2070,
+  "starting_price": null,
+  "currency": null,
+  "brand_partner": null,
+  "handover": null,
+  "payment_plan": null,
+  "highlights": [
+   "Located in AIDA gated community",
+   "100% Freehold Ownership",
+   "25 minutes from Muscat International Airport",
+   "Infinity pool and gym"
+  ]
+ },
+ "https://www.darglobal.co.uk/the-great-escape-2-aida-oman": {
+  "name": "The Great Escape 2 Aida",
+  "city": "Muscat",
+  "country": "Oman",
+  "property_types": [
+   "apartments"
+  ],
+  "status": "under development",
+  "bedrooms_min": 1,
+  "bedrooms_max": 3,
+  "area_min_sqft": 603,
+  "area_max_sqft": 2070,
+  "starting_price": null,
+  "currency": null,
+  "brand_partner": null,
+  "handover": null,
+  "payment_plan": null,
+  "highlights": [
+   "Cliff Edge Infinity Pool",
+   "100% Freehold Ownership",
+   "25 minutes from Muscat International Airport",
+   "Nearby Trump International Golf Club Oman"
+  ]
+ },
+ "https://www.darglobal.co.uk/the-mulliner": {
+  "name": "The Mulliner",
+  "city": "London",
+  "country": "United Kingdom",
+  "property_types": [
+   "apartments"
+  ],
+  "status": "sold out",
+  "bedrooms_min": 5,
+  "bedrooms_max": 5,
+  "area_min_sqft": 5224.5,
+  "area_max_sqft": 5224.5,
+  "starting_price": null,
+  "currency": null,
+  "brand_partner": null,
+  "handover": null,
+  "payment_plan": null,
+  "highlights": [
+   "Grade II listed landmark building",
+   "Overlooking Green Park",
+   "24-hour concierge and porterage",
+   "Premium Gaggenau and Miele appliances"
+  ]
+ },
+ "https://www.darglobal.co.uk/tierra-viva": {
+  "name": "Tierra Viva",
+  "city": "Benahavís",
+  "country": "Spain",
+  "property_types": [
+   "villas"
+  ],
+  "status": "under development",
+  "bedrooms_min": null,
+  "bedrooms_max": null,
+  "area_min_sqft": 7329,
+  "area_max_sqft": 16290,
+  "starting_price": null,
+  "currency": null,
+  "brand_partner": "Automobili Lamborghini",
+  "handover": "June 2028",
+  "payment_plan": null,
+  "highlights": [
+   "Gated community with 24/7 security",
+   "Panoramic Mediterranean views",
+   "Design inspired by Automobili Lamborghini",
+   "15 minutes from Marbella"
+  ]
+ },
+ "https://www.darglobal.co.uk/trump-international-hotel-and-tower-dubai": {
+  "name": "Trump International Hotel & Tower Dubai",
+  "city": "Dubai",
+  "country": "UAE",
+  "property_types": [
+   "apartments",
+   "penthouses",
+   "hotel rooms"
+  ],
+  "status": "under development",
+  "bedrooms_min": 1,
+  "bedrooms_max": 4,
+  "area_min_sqft": 764,
+  "area_max_sqft": 7720,
+  "starting_price": null,
+  "currency": null,
+  "brand_partner": "Trump",
+  "handover": "December 2031",
+  "payment_plan": null,
+  "highlights": [
+   "World's highest outdoor infinity pool",
+   "Five-star Trump hotel on-site",
+   "Members-only club with spa and golf simulator",
+   "Direct access to Downtown Dubai and Burj Khalifa"
+  ]
+ },
+ "https://www.darglobal.co.uk/trump-plaza/executive-residences": {
+  "name": "Trump Plaza Executive Residences",
+  "city": "Jeddah",
+  "country": "Saudi Arabia",
+  "property_types": [
+   "apartments"
+  ],
+  "status": "under development",
+  "bedrooms_min": 1,
+  "bedrooms_max": 3,
+  "area_min_sqft": 743,
+  "area_max_sqft": 1895,
+  "starting_price": null,
+  "currency": null,
+  "brand_partner": "Trump",
+  "handover": null,
+  "payment_plan": null,
+  "highlights": [
+   "Fully furnished with hotel-finished interiors",
+   "Located in Amaya master development, Jeddah",
+   "Access to Vitality Club with spa and pools",
+   "Full freehold ownership for foreign investors"
+  ]
+ },
+ "https://www.darglobal.co.uk/trump-plaza/park-residences": {
+  "name": "Trump Plaza Park Residences",
+  "city": "Jeddah",
+  "country": "Saudi Arabia",
+  "property_types": [
+   "apartments",
+   "townhouses"
+  ],
+  "status": "under development",
+  "bedrooms_min": 2,
+  "bedrooms_max": 4,
+  "area_min_sqft": 979,
+  "area_max_sqft": 3918,
+  "starting_price": null,
+  "currency": null,
+  "brand_partner": "Trump",
+  "handover": null,
+  "payment_plan": null,
+  "highlights": [
+   "Set around a private park extending over 7,000 square meters",
+   "Includes Vitality Club with spa, pools, and dining",
+   "Located in Amaya master development, Central Jeddah",
+   "Full freehold ownership available to foreign investors"
+  ]
+ },
+ "https://www.darglobal.co.uk/trump-tower-jeddah": {
+  "name": "Trump Tower Jeddah",
+  "city": "Jeddah",
+  "country": "Saudi Arabia",
+  "property_types": [
+   "apartments",
+   "penthouses"
+  ],
+  "status": "under development",
+  "bedrooms_min": 1,
+  "bedrooms_max": 4,
+  "area_min_sqft": 753,
+  "area_max_sqft": 3920,
+  "starting_price": null,
+  "currency": null,
+  "brand_partner": "Trump",
+  "handover": "December 2029",
+  "payment_plan": null,
+  "highlights": [
+   "47-floor seafront tower on Jeddah Corniche",
+   "Uninterrupted Red Sea views",
+   "Trump Private Club with fine dining and gym",
+   "24/7 concierge services"
+  ]
+ },
+ "https://www.darglobal.co.uk/urban-oasis-by-missoni": {
+  "name": "Urban Oasis by Missoni",
+  "city": "Dubai",
+  "country": "United Arab Emirates",
+  "property_types": [
+   "apartments",
+   "penthouses"
+  ],
+  "status": "sold out",
+  "bedrooms_min": 1,
+  "bedrooms_max": 3,
+  "area_min_sqft": 323,
+  "area_max_sqft": 3828,
+  "starting_price": null,
+  "currency": null,
+  "brand_partner": "Missoni",
+  "handover": null,
+  "payment_plan": null,
+  "highlights": [
+   "Completed and sold out",
+   "Direct Dubai Canal frontage",
+   "Missoni-designed interiors",
+   "360-degree views"
+  ]
+ },
+ "https://www.darglobal.co.uk/w-residences": {
+  "name": "W Residences",
+  "city": "Dubai",
+  "country": "United Arab Emirates",
+  "property_types": [
+   "apartments"
+  ],
+  "status": "sold out",
+  "bedrooms_min": 1,
+  "bedrooms_max": 3,
+  "area_min_sqft": 701,
+  "area_max_sqft": 7627,
+  "starting_price": null,
+  "currency": null,
+  "brand_partner": "W Hotels",
+  "handover": null,
+  "payment_plan": null,
+  "highlights": [
+   "Direct views of Burj Khalifa and Dubai Fountain",
+   "Infinity outdoor pool and private cinema",
+   "Steps from Dubai Mall",
+   "W Hotels branded amenities and lounge"
+  ]
+ }
+}
