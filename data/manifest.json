@@ -1,0 +1,46 @@
+{
+  "built_at": "2026-11-22T16:10:43+00:00",
+  "scraped_window": {
+    "darglobal": "2026-11-22",
+    "wasalt": "2026-11-22"
+  },
+  "counts": {
+    "darglobal_projects": 42,
+    "darglobal_chunks": 1538,
+    "darglobal_pages_by_type": {
+      "company": 13,
+      "project": 42,
+      "insight": 25,
+      "partner": 11,
+      "listing_index": 15,
+      "blog": 117,
+      "press": 39
+    },
+    "wasalt_listings": 1133,
+    "wasalt_market_snapshots": 26,
+    "wasalt_by_city": {
+      "Riyadh": 506,
+      "Jeddah": 354,
+      "Khobar": 68,
+      "Dammam": 49,
+      "Makkah": 41,
+      "Madinah": 14,
+      "Jazan": 13,
+      "Khamis Mushait": 10,
+      "Taif": 9,
+      "Abha": 8,
+      "Buraydah": 7,
+      "Al Kharj": 7
+    },
+    "wasalt_by_purpose": {
+      "sale": 793,
+      "rent": 340
+    }
+  },
+  "embedding_model": "paraphrase-multilingual-MiniLM-L12-v2 (int8 ONNX)",
+  "embeddings": {
+    "remote": null,
+    "local": "paraphrase-multilingual-MiniLM-L12-v2 (int8 ONNX)"
+  },
+  "llm_enriched_projects": 40
+}

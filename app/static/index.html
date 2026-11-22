@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Property Intelligence Assistant</title>
+  <meta name="description" content="Ask about DarGlobal developments and Saudi property listings from Wasalt." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%230f1d33'/><path d='M8 23V13l8-5 8 5v10h-5v-6h-6v6z' fill='%23c9a96e'/></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="var(--navy)"/><path d="M8 23V13l8-5 8 5v10h-5v-6h-6v6z" fill="var(--gold)"/></svg>
+        <div>
+          <div class="brand-name">Property Intelligence</div>
+          <div class="brand-sub">Property assistant</div>
+        </div>
+      </div>
+
+      <button class="new-chat" id="newChat">+ New conversation</button>
+
+      <div class="side-section">
+        <div class="side-label">Search in</div>
+        <div class="segmented" role="radiogroup" aria-label="Data source">
+          <button role="radio" aria-checked="true" data-source="any" class="active">All</button>
+          <button role="radio" aria-checked="false" data-source="darglobal">DarGlobal</button>
+          <button role="radio" aria-checked="false" data-source="wasalt">Wasalt</button>
+        </div>
+      </div>
+
+      <div class="side-foot">
+        Not affiliated with DarGlobal or Wasalt. Information comes from their public websites and may be out of date, so please confirm details on the listing.
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="icon-btn menu" id="menuBtn" aria-label="Open menu">☰</button>
+        <div class="topbar-title">Property Intelligence Assistant</div>
+        <button class="icon-btn" id="themeBtn" aria-label="Toggle theme">◐</button>
+      </header>
+
+      <section class="chat" id="chat" aria-live="polite">
+        <div class="hero" id="hero">
+          <div class="eyebrow">DarGlobal × Wasalt</div>
+          <h1>Find, compare and understand<br/>luxury &amp; Saudi real estate.</h1>
+          <p>Ask about DarGlobal's branded developments in six countries, or search Wasalt property listings across Saudi Arabia. Answers link back to the original pages.</p>
+          <div class="suggestions" id="suggestions">
+            <button>Which DarGlobal projects are branded by Trump?</button>
+            <button>3-bedroom apartments for rent in Riyadh under 90k SAR</button>
+            <button>What's the median villa price in Jeddah?</button>
+            <button>Compare Da Vinci Tower and Marea by Missoni</button>
+            <button>What payment options does DarGlobal offer? Can I pay with crypto?</button>
+            <button>أبحث عن فيلا للبيع في الرياض</button>
+          </div>
+        </div>
+      </section>
+
+      <form class="composer" id="composer" autocomplete="off">
+        <textarea id="input" rows="1" maxlength="800" placeholder="Ask about projects, prices, locations, payment plans…" aria-label="Message"></textarea>
+        <button type="submit" id="send" aria-label="Send">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 12l16-8-6 16-2.5-6.5L4 12z" fill="currentColor"/></svg>
+        </button>
+      </form>
+      <div class="composer-hint">Answers can be imperfect. Prices and availability change, so always confirm with the listing.</div>
+    </main>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.6/purify.min.js"></script>
+  <script src="/static/app.js"></script>
+</body>
+</html>

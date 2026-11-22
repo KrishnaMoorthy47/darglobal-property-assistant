@@ -1,0 +1,80 @@
+# USD per unit. Gulf currencies are pegged; GBP/EUR are approximate.
+currency_usd_rates: {USD: 1.0, AED: 0.2723, SAR: 0.2667, QAR: 0.2747, OMR: 2.6008, GBP: 1.27, EUR: 1.08}
+# used when the user gives a price without a currency
+default_currency: {darglobal: USD, wasalt: SAR}
+
+# case-insensitive regexes
+patterns:
+  greeting: '^\s*(hi|hello|hey|salam|salaam|marhaba|مرحبا|السلام عليكم|good (morning|evening|afternoon)|thanks?|thank you|شكرا)[\s!.,]*$'
+  injection: '(ignore (all|previous|the above)|disregard (the|all|previous)|system prompt|you are now|jailbreak|developer mode|reveal your (prompt|instructions))'
+  contact_request: "(phone|mobile|whats ?app|contact (number|details|info)|e-?mail address|call the (agent|owner)|agent'?s number|owner'?s number|رقم (الجوال|الهاتف|التواصل)|واتساب)"
+
+stopwords: [a, an, the, of, in, "on", at, for, to, and, or, is, are, was, were, be, what, which, who, whom, how, much, many,
+            me, my, i, you, your, show, find, list, give, tell, about, with, from, by, any, some, there, this, that, these,
+            those, do, does, can, could, would, should, please, near, under, over, below, above, than, less, more, best,
+            top, property, properties]
+
+# fallback router when the LLM router is unavailable
+rule_router:
+  countries:
+    United Arab Emirates: [uae, emirates]
+    Oman: [oman]
+    Qatar: [qatar]
+    Spain: [spain]
+    United Kingdom: [uk, united kingdom, england]
+    Saudi Arabia: [saudi, ksa]
+  property_types:
+    Apartment: [apartment, flat, شقة, شقق]
+    Villa: [villa, فيلا, فلل]
+    Land: [land, plot, أرض]
+    Floor: [floor]
+    Duplex: [duplex]
+    Penthouse: [penthouse]
+  currencies:
+    AED: [aed, dirham]
+    SAR: [sar, riyal, ريال]
+    USD: [usd, "$", dollar]
+    GBP: [gbp, "£", pound]
+    EUR: [eur, "€", euro]
+  rent_pattern: '\b(rent|rental|lease|إيجار|للإيجار)\b'
+  sale_pattern: '\b(buy|sale|purchase|للبيع)\b'
+  bedrooms_pattern: '(\d+)\s*\+?\s*(?:-|\s)?(?:bed|br|bedroom|غرف)'
+  max_price_words: '(?:under|below|less than|max(?:imum)?|up to|within|<|أقل من)'
+  min_price_words: '(?:over|above|more than|min(?:imum)?|from|>)'
+  number_units: {k: 1000, thousand: 1000, "ألف": 1000, m: 1000000, mn: 1000000, million: 1000000, "مليون": 1000000}
+  compare_pattern: '\b(compare|vs\.?|versus|difference between)\b'
+  stats_pattern: '\b(average|median|typical|price range|how much (do|does|are)|market)\b'
+  search_pattern: '\b(show|find|list|looking for|search|available|options)\b'
+  wasalt_default_cities: [Riyadh, Jeddah, Dammam, Khobar, Makkah, Madinah]
+
+pipeline:
+  brands: [Trump, Pagani, Lamborghini, Missoni, Fendi Casa, Elie Saab, Aston Martin, Mouawad, W Residences, W Hotels,
+           Marriott, Paramount, Mulliner, Bentley]
+  developer_names_not_brands: [darglobal, daralarkan]
+  country_aliases: {uae: United Arab Emirates, united arab emirates: United Arab Emirates, ksa: Saudi Arabia,
+                    saudi arabia: Saudi Arabia, oman: Oman, qatar: Qatar, spain: Spain, united kingdom: United Kingdom,
+                    uk: United Kingdom}
+  city_country: {dubai: United Arab Emirates, ras al khaimah: United Arab Emirates, abu dhabi: United Arab Emirates,
+                 muscat: Oman, aida: Oman, sohar: Oman, doha: Qatar, jeddah: Saudi Arabia, riyadh: Saudi Arabia,
+                 marbella: Spain, benahavis: Spain, estepona: Spain, london: United Kingdom, costa del sol: Spain}
+  city_display_overrides: {aida: Muscat}   # AIDA is in Muscat
+  # Wasalt spellings to common names
+  city_normalize: {aldammam: Dammam, makkah al mukarramah: Makkah, alttayif: Taif, bariduh: Buraydah,
+                   almadinah almunawwarah: Madinah, alkhubar: Khobar, al khobar: Khobar, aldhahran: Dhahran,
+                   alahsa: Al Ahsa, abha: Abha, hail: Hail, tabuk: Tabuk}
+  # UI text to strip from scraped pages
+  boilerplate:
+    - 'To activate drag with keyboard.*?press Escape\.'
+    - 'Download Brochure'
+    - 'Book Unit'
+    - 'Choose your residence'
+    - '360 View'
+    - 'View All Images'
+    - 'View All Projects'
+    - 'REGISTER INTEREST'
+    - 'Register Your Interest'
+    - 'Photo Gallery'
+    - 'Progress Update'
+    - '\+971 ?4562 ?9616'
+    - 'Application error:.*?information\)\.'
+    - 'Please provide your details to register interest'

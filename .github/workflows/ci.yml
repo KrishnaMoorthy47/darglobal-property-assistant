@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "0 3 * * 1"   # weekly
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      # same deps as the container, so a missing one fails here first
+      - run: pip install -r requirements.txt pytest ruff
+      - name: Build the embedding model
+        run: pip install onnx huggingface_hub && python -m app.rag.embedder prepare
+      - run: ruff check app pipeline evals tests
+      - run: pytest -q
+      - name: Evals
+        run: python -m evals.run
+      - uses: actions/upload-artifact@v4
+        with:
+          name: eval-report
+          path: evals/report.md
+
+  docker:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build -t property-assistant .

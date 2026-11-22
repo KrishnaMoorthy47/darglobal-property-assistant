@@ -1,0 +1,133 @@
+# App settings. API keys go in .env, not here.
+# Env vars override this file, with __ for nesting: LLM__GENERATION__MAX_TOKENS=900
+
+llm:
+  # Chains are tried in order. Providers without a key in the environment are skipped.
+  # openrouter, openrouter_2, openrouter_3 = OPENROUTER_API_KEY, _KEY_2, _KEY_3 (separate free accounts).
+  # Answers use keys 1 and 2; key 3 does embeddings and question understanding so it doesn't drain them.
+  # Groq is only a fallback for when the OpenRouter keys are used up.
+  generation_chain:
+    - {provider: openrouter, model: "nvidia/nemotron-3-ultra-550b-a55b:free", daily_cap: 35, rpm: 15}
+    - {provider: openrouter, model: "google/gemma-4-31b-it:free", daily_cap: 15, rpm: 15}
+    - {provider: openrouter_2, model: "nvidia/nemotron-3-ultra-550b-a55b:free", daily_cap: 35, rpm: 15}
+    - {provider: openrouter_2, model: "google/gemma-4-31b-it:free", daily_cap: 15, rpm: 15}
+    - {provider: groq, model: "openai/gpt-oss-120b", daily_cap: 900, rpm: 25}
+  router_chain:                # rule-based parser if all of these fail
+    - {provider: openrouter_3, model: "nvidia/nemotron-3.5-lightning:free", daily_cap: 25, rpm: 15}
+    - {provider: openrouter_3, model: "google/gemma-4-26b-a4b-it:free", daily_cap: 10, rpm: 15}
+    - {provider: openrouter, model: "nvidia/nemotron-3.5-lightning:free", daily_cap: 10, rpm: 15}
+    - {provider: groq, model: "qwen/qwen3.8-27b", daily_cap: 900, rpm: 25}
+    - {provider: groq, model: "openai/gpt-oss-20b", daily_cap: 900, rpm: 25}
+  # query embeddings; every entry must use embedder.remote.model (the index was built with it)
+  embedding_chain:
+    - {provider: openrouter_3, model: "nvidia/nemotron-3.5-embed-1b:free", daily_cap: 25, rpm: 15}
+    - {provider: openrouter, model: "nvidia/nemotron-3.5-embed-1b:free", daily_cap: 10, rpm: 15}
+    - {provider: openrouter_2, model: "nvidia/nemotron-3.5-embed-1b:free", daily_cap: 10, rpm: 15}
+  # a free OpenRouter account allows ~50 free-model requests a day across all models (chat and embeddings)
+  key_daily_caps: {openrouter: 48, openrouter_2: 48, openrouter_3: 48}
+  base_urls:
+    openrouter: "https://openrouter.ai/api/v1"
+    openrouter_2: "https://openrouter.ai/api/v1"
+    openrouter_3: "https://openrouter.ai/api/v1"
+    groq: "https://api.groq.com/openai/v1"
+  quota_safety_ratio: 0.8      # stop calling a model at 80% of its daily cap
+  timeout_s: 30
+  generation: {temperature: 0.2, max_tokens: 2000}
+  router: {temperature: 0.0, max_tokens: 300, history_turns: 4, history_chars: 300, max_cities_in_prompt: 40}
+  # extra request params, matched against the model id. Nemotron's hidden reasoning counts toward
+  # max_tokens and was cutting answers off, so it's turned off.
+  request_extras:
+    "gpt-oss": {reasoning_effort: "low"}
+    "gpt-oss-120b": {max_tokens: 1200}   # Groq counts max_tokens against its 8k tokens/minute limit
+    "nemotron-3-ultra": {extra_body: {reasoning: {enabled: false}}}
+    "gemma-4": {extra_body: {reasoning: {enabled: false}}}
+    "nemotron-3.5-lightning": {extra_body: {reasoning: {enabled: false}}}
+    # JSON mode for the router models that support it (the router also copes without it)
+    "gemma-4-26b": {response_format: {type: "json_object"}}
+    "qwen/qwen3.8": {response_format: {type: "json_object"}}
+    "gpt-oss-20b": {response_format: {type: "json_object"}}
+  circuit_breaker:
+    default_retry_after_s: 60
+    rate_limit_min_s: 20
+    rate_limit_max_s: 3600
+    auth_error_s: 3600          # bad key or no credits
+    model_not_found_s: 21600    # model removed
+    transient_failures_to_trip: 2
+    transient_cooldown_s: 30
+
+retrieval:
+  top_k_chunks: 6
+  top_k_properties: 6
+  candidate_pool: 30           # per retriever, before fusion
+  rrf_k: 60
+  max_chunks_per_page: 2
+  bm25_title_weight: 2.0
+  bm25_text_weight: 1.0
+  property_fts_bonus: 0.08     # added to cosine score on a keyword match
+  property_fts_limit: 200
+  property_candidate_limit: 2000
+  relax_order: [max_bedrooms, min_price, property_type, min_bedrooms, max_price]
+  stats_min_count: 3
+  chunks_with_property_search: 3
+  compare_property_k: 4
+  knowledge_property_k: 2
+  max_properties_in_context: 8
+  list_property_k: 20           # for "which projects..." questions, send every match up to this
+  max_cards: 6
+  property_details_chars: 450
+  max_fts_terms: 16
+
+data_quality:
+  min_plausible_annual_rent_sar: 8000   # lower yearly rents are probably monthly; left out of stats
+
+cache:
+  semantic_threshold: 0.95
+  ttl_hours: 24
+  scan_limit: 500
+
+guardrails:
+  max_input_chars: 800
+  max_history_turns: 6
+  history_message_chars: 1500
+  user_rpm: 8
+  user_daily: 80
+
+storage:
+  queue_max: 2000
+  write_retries: 4
+  timeout_s: 10
+
+embedder:
+  hf_repo: "Qdrant/paraphrase-multilingual-MiniLM-L12-v2-onnx-Q"
+  display_name: "paraphrase-multilingual-MiniLM-L12-v2 (int8 ONNX)"
+  model_dir: "models/minilm-int8"      # Docker overrides via EMBEDDER__MODEL_DIR
+  max_tokens: 256
+  max_piece_len: 16
+  threads: 2
+  batch_size: 32
+  # primary embeddings from OpenRouter; the local model above is the backup
+  remote:
+    enabled: true
+    model: "nvidia/nemotron-3.5-embed-1b:free"
+    query_prefix: ""        # some embedding models want e.g. "query: " / "passage: "
+    doc_prefix: ""
+    batch_size: 64          # texts per request when building the index
+    pause_s: 4              # between requests when building (free models allow ~20 a minute)
+
+pipeline:
+  chunk_size: 1100
+  chunk_overlap: 180
+  min_page_chars: 250
+  enrichment: {provider: groq, model: "qwen/qwen3.8-27b", max_tokens: 400, max_input_chars: 6000, pause_s: 2.5}
+
+evals:
+  judge: {provider: groq, model: "openai/gpt-oss-120b", reasoning_effort: "low", max_tokens: 400}
+  pause_s: 4
+
+paths:
+  data_dir: "data"
+  runtime_db: "runtime/runtime.db"
+
+ops:
+  app_url: "http://localhost:7860"     # APP_URL on Render
+  allowed_origins: "*"

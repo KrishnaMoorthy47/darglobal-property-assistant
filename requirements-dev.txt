@@ -1,0 +1,11 @@
+-r requirements.txt
+httpx
+selectolax
+tenacity
+playwright
+pytest
+ruff
+huggingface_hub
+onnx
+fastembed
+psutil

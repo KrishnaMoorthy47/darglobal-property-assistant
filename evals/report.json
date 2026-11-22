@@ -1,0 +1,419 @@
+{
+  "run_at": "2026-11-22T16:36:09+00:00",
+  "cases": 32,
+  "mode": "retrieval+router-rules",
+  "retrieval": {
+    "hit_at_5": 1.0,
+    "mrr": 0.967,
+    "rows": [
+      {
+        "id": "r01",
+        "question": "Tell me about Da Vinci Tower with Pagani interiors",
+        "rank": 2,
+        "top": [
+          "https://www.darglobal.co.uk/blog/elevate-your-lifestyle-the-da-vinci-tower-interiors-by-pagani",
+          "https://www.darglobal.co.uk/davinci-tower-by-pagani",
+          "https://www.darglobal.co.uk/blog/elevate-your-lifestyle-the-da-vinci-tower-interiors-by-pagani"
+        ]
+      },
+      {
+        "id": "r02",
+        "question": "Which DarGlobal project in Qatar has Elie Saab interiors?",
+        "rank": 1,
+        "top": [
+          "https://www.darglobal.co.uk/les-vagues",
+          "https://www.darglobal.co.uk/press/dar-al-arkan-global-launches-sales-of-the-most-premium-residential-address-in-qatar-les-vagues-by-elie-saab-with-views-of-lusail-skyline-and-the-sea-at-qetaifan-island-north",
+          "https://www.darglobal.co.uk/blog/les-vagues-where-couture-meets-comfort-elie-saabs-visionary-real-estate-venture-in-qatar-ues-elie-saabs-visionary-real-estate-venture-in-qatar"
+        ]
+      },
+      {
+        "id": "r03",
+        "question": "Missoni branded residences in Marbella Spain",
+        "rank": 1,
+        "top": [
+          "https://www.darglobal.co.uk/insights/missoni-branded-residences-costa-del-sol",
+          "https://www.darglobal.co.uk/marea",
+          "https://www.darglobal.co.uk/press/missoni-and-dar-global-launch-residential-development-project-in-southern-spain-duplicate-27740"
+        ]
+      },
+      {
+        "id": "r04",
+        "question": "Can I buy a DarGlobal property using cryptocurrency?",
+        "rank": 1,
+        "top": [
+          "https://www.darglobal.co.uk/insights/crypto-tokenized-luxury-developer",
+          "https://www.darglobal.co.uk/blog/how-to-buy-luxury-real-estate",
+          "https://www.darglobal.co.uk/blog/insignia-cards-limited-and-darglobal-unite-to-unlock-extraordinary-possibilities"
+        ]
+      },
+      {
+        "id": "r05",
+        "question": "Trump golf villas in AIDA Muscat Oman",
+        "rank": 1,
+        "top": [
+          "https://www.darglobal.co.uk/aida-trump-villas",
+          "https://www.darglobal.co.uk/press/dar-al-arkan-introduces-trump-signature-villas-hotel-and-golf-course-at-its-hilltop-project-aida-in-muscat-oman",
+          "https://www.darglobal.co.uk/blog/the-trump-golf-villas-luxury-living-with-a-view-at-aida-oman"
+        ]
+      },
+      {
+        "id": "r06",
+        "question": "Mouawad branded villas in Riyadh",
+        "rank": 1,
+        "top": [
+          "https://www.darglobal.co.uk/insights/mouawad-branded-villas-riyadh",
+          "https://www.darglobal.co.uk/neptune",
+          "https://www.darglobal.co.uk/press/LET-IT-RAIN-DIAMONDS-DAR-GLOBAL-AND-MOUAWAD-HIGH-JEWELLERY-HOUSE-UNVEIL-SAR-880-MILLION-LANDMARK-RESIDENTIAL-PROJECT"
+        ]
+      },
+      {
+        "id": "r07",
+        "question": "Is DarGlobal listed on the London Stock Exchange?",
+        "rank": 1,
+        "top": [
+          "https://www.darglobal.co.uk/press/dar-al-arkan-succeeds-in-the-listing-of-its-international-arm-dar-global-on-the-london-stock-exchange-with-a-valuation-of-2250000000-saudi-riyals",
+          "https://www.darglobal.co.uk/press/darglobal-first-saudi-company-equity-shares-london-stock-exchange",
+          "https://www.darglobal.co.uk/press/dar-al-arkan-succeeds-in-the-listing-of-its-international-arm-dar-global-on-the-london-stock-exchange-with-a-valuation-of-2250000000-saudi-riyals"
+        ]
+      },
+      {
+        "id": "r08",
+        "question": "Lamborghini inspired villas in Spain",
+        "rank": 1,
+        "top": [
+          "https://www.darglobal.co.uk/insights/lamborghini-inspired-villas-spain",
+          "https://www.darglobal.co.uk/one-of-one/painite-villas-design-inspired-by-Automobili-Lamborghini",
+          "https://www.darglobal.co.uk/insights/lamborghini-inspired-villas-spain"
+        ]
+      },
+      {
+        "id": "r09",
+        "question": "Golden visa homes with sea view in Oman",
+        "rank": 1,
+        "top": [
+          "https://www.darglobal.co.uk/insights/oman-golden-visa-sea-view-homes",
+          "https://www.darglobal.co.uk/insights/trump-partnered-projects-oman",
+          "https://www.darglobal.co.uk/insights/w-residences-downtown-dubai"
+        ]
+      },
+      {
+        "id": "r10",
+        "question": "Trump Tower Jeddah project",
+        "rank": 1,
+        "top": [
+          "https://www.darglobal.co.uk/trump-tower-jeddah",
+          "https://www.darglobal.co.uk/trump-tower-jeddah",
+          "https://www.darglobal.co.uk/blog/Elegance-in-the-Sky-DarGlobal-and-Trump-Organization-Unveil-Jeddah-Tower"
+        ]
+      },
+      {
+        "id": "r11",
+        "question": "luxury property in London Park Lane",
+        "rank": 1,
+        "top": [
+          "https://www.darglobal.co.uk/press/Dar-Global-completes-sale-of-historic-149-Old-Park-Lane-marketed-at-25mln",
+          "https://www.darglobal.co.uk/press/Dar-Global-completes-sale-of-historic-149-Old-Park-Lane-marketed-at-25mln",
+          "https://www.darglobal.co.uk/projects/properties-in-uk"
+        ]
+      },
+      {
+        "id": "r12",
+        "question": "Aston Martin interiors apartments Ras Al Khaimah",
+        "rank": 1,
+        "top": [
+          "https://www.darglobal.co.uk/insights/aston-martin-interiors-apartments-ras-al-khaimah",
+          "https://www.darglobal.co.uk/the-astera",
+          "https://www.darglobal.co.uk/partners/aston-martin"
+        ]
+      },
+      {
+        "id": "r13",
+        "question": "D-Villas at Jumeirah Golf Estates",
+        "rank": 1,
+        "top": [
+          "https://www.darglobal.co.uk/d-villas-at-jge",
+          "https://www.darglobal.co.uk/press/DarGlobal–crafts–an–exceptional–residential–experience–with–the–launch–of–exclusive–DG–Villas–at–Jumeirah–Golf–Estates",
+          "https://www.darglobal.co.uk/blog/investing-in-jumeirah-golf-estates"
+        ]
+      },
+      {
+        "id": "r14",
+        "question": "W Residences Downtown Dubai",
+        "rank": 1,
+        "top": [
+          "https://www.darglobal.co.uk/press/dar-al-arkan-reveals-w-residences-dubai-downtown-overlooking-dubais-burj-khalifa-and-dubai-fountain",
+          "https://www.darglobal.co.uk/insights/w-residences-downtown-dubai",
+          "https://www.darglobal.co.uk/press/dar-al-arkan-reveals-w-residences-dubai-downtown-overlooking-dubais-burj-khalifa-and-dubai-fountain"
+        ]
+      },
+      {
+        "id": "r15",
+        "question": "What is the typical price of a villa for sale in Riyadh?",
+        "rank": 1,
+        "top": [
+          "https://wasalt.sa/en",
+          "https://wasalt.sa/en",
+          "https://www.darglobal.co.uk/aida-360"
+        ]
+      }
+    ]
+  },
+  "router": {
+    "rules": {
+      "intent_accuracy": 0.9,
+      "filter_accuracy": 0.967,
+      "rows": [
+        {
+          "id": "q01",
+          "intent": "property_search",
+          "ok": true,
+          "filter_score": 1.0,
+          "mode": "rules"
+        },
+        {
+          "id": "q02",
+          "intent": "property_search",
+          "ok": true,
+          "filter_score": 1.0,
+          "mode": "rules"
+        },
+        {
+          "id": "q03",
+          "intent": "market_stats",
+          "ok": true,
+          "filter_score": 1.0,
+          "mode": "rules"
+        },
+        {
+          "id": "q04",
+          "intent": "compare",
+          "ok": true,
+          "filter_score": 1.0,
+          "mode": "rules"
+        },
+        {
+          "id": "q05",
+          "intent": "knowledge",
+          "ok": true,
+          "filter_score": 1.0,
+          "mode": "rules"
+        },
+        {
+          "id": "q06",
+          "intent": "property_search",
+          "ok": false,
+          "filter_score": 1.0,
+          "mode": "rules"
+        },
+        {
+          "id": "q07",
+          "intent": "out_of_scope",
+          "ok": true,
+          "filter_score": 1.0,
+          "mode": "rules"
+        },
+        {
+          "id": "q08",
+          "intent": "greeting",
+          "ok": true,
+          "filter_score": 1.0,
+          "mode": "rules"
+        },
+        {
+          "id": "q09",
+          "intent": "property_search",
+          "ok": true,
+          "filter_score": 1.0,
+          "mode": "rules"
+        },
+        {
+          "id": "q10",
+          "intent": "property_search",
+          "ok": true,
+          "filter_score": 0.67,
+          "mode": "rules"
+        }
+      ]
+    },
+    "llm": {
+      "intent_accuracy": 1.0,
+      "filter_accuracy": 1.0,
+      "rows": [
+        {
+          "id": "q01",
+          "intent": "property_search",
+          "ok": true,
+          "filter_score": 1.0,
+          "mode": "llm"
+        },
+        {
+          "id": "q02",
+          "intent": "property_search",
+          "ok": true,
+          "filter_score": 1.0,
+          "mode": "llm"
+        },
+        {
+          "id": "q03",
+          "intent": "market_stats",
+          "ok": true,
+          "filter_score": 1.0,
+          "mode": "llm"
+        },
+        {
+          "id": "q04",
+          "intent": "compare",
+          "ok": true,
+          "filter_score": 1.0,
+          "mode": "llm"
+        },
+        {
+          "id": "q05",
+          "intent": "knowledge",
+          "ok": true,
+          "filter_score": 1.0,
+          "mode": "llm"
+        },
+        {
+          "id": "q06",
+          "intent": "out_of_scope",
+          "ok": true,
+          "filter_score": 1.0,
+          "mode": "llm"
+        },
+        {
+          "id": "q07",
+          "intent": "out_of_scope",
+          "ok": true,
+          "filter_score": 1.0,
+          "mode": "llm"
+        },
+        {
+          "id": "q08",
+          "intent": "greeting",
+          "ok": true,
+          "filter_score": 1.0,
+          "mode": "rules"
+        },
+        {
+          "id": "q09",
+          "intent": "property_search",
+          "ok": true,
+          "filter_score": 1.0,
+          "mode": "llm"
+        },
+        {
+          "id": "q10",
+          "intent": "property_search",
+          "ok": true,
+          "filter_score": 1.0,
+          "mode": "llm"
+        }
+      ]
+    }
+  },
+  "answers": {
+    "correctness": 1.0,
+    "faithfulness": 1.0,
+    "refusal_accuracy": 1.0,
+    "p50_latency_ms": 7946,
+    "rows": [
+      {
+        "id": "a01",
+        "question": "Who designed the interiors of Da Vinci Tower and where is it?",
+        "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+        "cached": false,
+        "latency_ms": 15695,
+        "answer": "**Interiors:** Designed by **Pagani Automobili** (the Italian hypercar brand) – the tower is the world’s first Pagani‑branded residences, with interiors featuring premium leather, Italian marble, carbon‑fibre accents, kinetic chandeliers and wood panelling [2][3][6].  \n\n**Location:** **Downtown Dubai, directly on the Dubai Water Canal**, with panoramic views of the Burj Khalifa and close to Marasi Business Bay [2][3][6][7].  \n\n*Follow‑up:* Would you like details on available unit sizes, amenities or the handover timeline?",
+        "correct": 1,
+        "faithful": 1,
+        "refused_properly": null,
+        "reason": "short"
+      },
+      {
+        "id": "a02",
+        "question": "Which DarGlobal project in Qatar is branded by Elie Saab?",
+        "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+        "cached": false,
+        "latency_ms": 10904,
+        "answer": "**Les Vagues by Elie Saab** is DarGlobal’s only project in Qatar branded by Elie Saab.  \n\n- **Location:** Qetaifan Island North, Doha (Lusail)  \n- **Type:** Branded seafront residential complex (1–3 bedroom apartments, 84–383 sqm)  \n- **Status:** Under development; handover December 2027  \n- **Key highlights:** Elie Saab interiors (marble, bronze, cream/grey tones), infinity pool, fitness centre, private beach access, marina, 18‑hole golf course, 7 km shoreline [1][3][6]  \n- **Partnership:** Developed by DarGlobal with Qetaifan Projects (owned by Katara Hospitality) [2][4][5]  \n\nWould you like",
+        "correct": 1,
+        "faithful": 1,
+        "refused_properly": null,
+        "reason": "short"
+      },
+      {
+        "id": "a03",
+        "question": "Show me villas for sale in Riyadh",
+        "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+        "cached": false,
+        "latency_ms": 13780,
+        "answer": "**Villas for sale in Riyadh (Wasalt sample – 6 of 94 live listings)**  \n*Live market: 94 villas, median **2,175,000 SAR**, range 950,000 – 8,500,000 SAR* [7].\n\n| # | Property | Area | Bedrooms | Street / Orientation | Price (SAR) | Key Notes |\n|---|----------|------|----------|----------------------|-------------|-----------|\n| 1 | Villa 600 SQM Facing 3 Streets on 12m Width Street [1] | 600 m² | 8 | 3 fronts (S 8m, W 8m, 12m main) | 2,150,000 | Old villa sold as development land (plot 885, plan 1638/ج) |\n| 2 | Villa 200 SQM Facing East on 20m Width Street [2] | 200 m² | 7 | East, 20m | 1,350,",
+        "correct": 1,
+        "faithful": 1,
+        "refused_properly": null,
+        "reason": "Answer lists only villas from context with accurate details"
+      },
+      {
+        "id": "a04",
+        "question": "What is the exact price per square foot of Trump Tower Jeddah penthouses?",
+        "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+        "cached": false,
+        "latency_ms": 7617,
+        "answer": "The exact price per square foot for Trump Tower Jeddah penthouses is **not published** in the available DarGlobal sources [1]. The project’s total valuation is cited as SAR 2 billion (≈ USD 531 million) [6][7], but no per‑unit or per‑sq‑ft pricing for penthouses is disclosed.\n\n**What the context does show**\n- Unit sizes: 70–365 sqm (≈ 753–3,929 sqft) for 1‑ to 4‑bedroom apartments and 3‑/4‑bedroom penthouses [2][3].\n- Status: under development, handover December 2029 [1].\n- Brand: Trump‑branded, 47‑floor seafront tower on Jeddah Corniche [1][2].\n\n**Next step**: Register interest on the DarGlob",
+        "correct": 1,
+        "faithful": 1,
+        "refused_properly": 1,
+        "reason": "short"
+      },
+      {
+        "id": "a05",
+        "question": "Can I pay for DarGlobal property with crypto?",
+        "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+        "cached": false,
+        "latency_ms": 6204,
+        "answer": "Yes, DarGlobal accepts cryptocurrency payments for property purchases. You can invest in their projects in Oman and Spain using Bitcoin, Ethereum, and other cryptocurrencies through a simple, secure process [3]. The company actively promotes tokenization and crypto payments to bridge digital and physical real estate investment [4], and their partnership with Insignia Cards also includes cryptocurrency payment options [6][8].\n\n**Follow-up:** Would you like details on specific DarGlobal projects available for crypto purchase (e.g., AIDA in Muscat or Trump Golf Villas)?",
+        "correct": 1,
+        "faithful": 1,
+        "refused_properly": null,
+        "reason": "Answer correctly states crypto payment is accepted and all claims are supported by provided sources."
+      },
+      {
+        "id": "a06",
+        "question": "What's the median price of apartments for sale in Jeddah?",
+        "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+        "cached": false,
+        "latency_ms": 7946,
+        "answer": "The median price for apartments for sale in Jeddah is **465,000 SAR** (based on 234 live listings, with a range of 189,000 – 2,000,000 SAR) [NOTES].\n\n*Want me to show you a few listings around that median price?*",
+        "correct": 1,
+        "faithful": 1,
+        "refused_properly": null,
+        "reason": "short"
+      },
+      {
+        "id": "a07",
+        "question": "What is the phone number of the agent for listing 5879365?",
+        "model": "none",
+        "cached": false,
+        "latency_ms": 69,
+        "answer": "I don't share personal contact details (phone numbers, WhatsApp or e-mail) of owners or agents. Privacy matters, and Wasalt's data policy doesn't allow extracting them. Please use the **contact / call button on the listing page** on Wasalt, or DarGlobal's official *Register interest* form for its projects.",
+        "correct": 1,
+        "faithful": 1,
+        "refused_properly": 1,
+        "reason": "short"
+      }
+    ]
+  },
+  "summary": {
+    "retrieval_hit_at_5": 1.0,
+    "retrieval_mrr": 0.967,
+    "router_rules_intent_accuracy": 0.9,
+    "router_rules_filter_accuracy": 0.967,
+    "router_llm_intent_accuracy": 1.0,
+    "router_llm_filter_accuracy": 1.0,
+    "answer_correctness": 1.0,
+    "answer_faithfulness": 1.0,
+    "refusal_accuracy": 1.0,
+    "answer_p50_latency_ms": 7946
+  }
+}
