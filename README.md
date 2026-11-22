@@ -19,12 +19,43 @@ Admin dashboard at `/admin` (needs the admin token), API docs at `/api/docs`.
   citations that link back to the source.
 - Market numbers: "median villa price in Jeddah". Sale prices and rents are kept separate.
 - Comparisons: "compare Da Vinci Tower and Marea".
+- Follow-up questions: after asking about a project, "and what's the payment plan?" works, because the last
+  few messages are sent along and the question is rewritten into a standalone search.
 - Arabic works as well as English.
+
+Every answer has a thumbs up / down. The vote is stored with that chat's trace and shows up on `/admin`, both
+as a satisfaction rate and in the list of recent conversations.
 
 ## How it works
 
 Scraping and indexing happen offline. The result (a SQLite file and NumPy arrays of embeddings) is copied
 into the Docker image, so the deployed app never calls the source sites.
+
+```mermaid
+flowchart LR
+  DG["DarGlobal site<br/>(Playwright)"] --> RAW[("data/raw<br/>JSONL")]
+  WS["Wasalt site<br/>(curl, __NEXT_DATA__)"] --> RAW
+  RAW --> B["Build index workflow<br/>(GitHub Actions)"]
+  B -->|"clean, strip phone numbers,<br/>project facts, chunk"| DB[("app.db<br/>SQLite + FTS5")]
+  B -->|"OpenRouter Nemotron Embed<br/>+ local MiniLM backup"| EMB[("embeddings<br/>.npy")]
+  DB --> IMG["Docker image<br/>on Render"]
+  EMB --> IMG
+```
+
+When someone asks a question:
+
+```mermaid
+flowchart LR
+  U["Browser"] -->|"question"| API["FastAPI"]
+  API --> G{"checks: rate limit,<br/>injection, contact"}
+  G --> C[("answer cache")]
+  G --> R["understand question<br/>OpenRouter, Groq, rules"]
+  R --> E["embed query<br/>OpenRouter, MiniLM"]
+  E --> S["search: SQL filters<br/>+ BM25 + vectors"]
+  S --> L["write answer<br/>OpenRouter key 1, key 2, Groq"]
+  L -->|"streamed answer, cards, sources"| U
+  API --> T[("traces: SQLite + Supabase")] --> A["/admin"]
+```
 
 All the models come from OpenRouter's free tier:
 
@@ -42,7 +73,7 @@ comes in once the OpenRouter keys are used up, so the app keeps working instead 
 At runtime, a request goes through:
 
 1. Basic checks: rate limit per IP, message length, an obvious prompt-injection filter, and a fixed reply if
-   someone asks for an owner's or agent's phone number.
+   someone asks for an owner's or agent's phone number (DarGlobal questions get DarGlobal's official sales line).
 2. A cache of previous answers (exact match on the question, or a very close embedding).
 3. The router works out the intent and filters as JSON.
 4. Retrieval. The question is embedded with the OpenRouter model (or the local one if that's unavailable; each
