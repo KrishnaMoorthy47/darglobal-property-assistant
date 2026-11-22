@@ -90,6 +90,20 @@ def retrieve(r: Route, question: str, ui_source: str | None, qvec) -> dict:
             "total_matches": total, "filters": f.active()}
 
 
+def contact_reply(question: str, ui_source: str | None) -> str:
+    pr, ref, store = get_prompts(), get_reference(), get_store()
+    dg = {"dg_phone": ref.darglobal_contact.phone, "dg_website": ref.darglobal_contact.website}
+    q = question.lower()
+    project = next((p for p in store.find_projects([question]) if p["source"] == "darglobal"
+                    and p["name"].lower() in q), None)
+    if project or ui_source == "darglobal" or re.search(r"\bdar ?global\b", q):
+        link = render(pr.contact_link, url=project["url"]).replace("Listing page", "Project page") if project else ""
+        return render(pr.darglobal_contact_reply, link=link, **dg)
+    m = re.search(r"\b(\d{6,8})\b", question)  # Wasalt listing id
+    row = store.db.execute("SELECT url FROM properties WHERE id=?", (f"ws-{m.group(1)}",)).fetchone() if m else None
+    return render(pr.contact_reply, link=render(pr.contact_link, url=row[0]) if row else "", **dg)
+
+
 def retrieval_only_answer(ctx: dict) -> str:
     """Answer built from search results alone, for when no LLM is available."""
     lines = [get_prompts().retrieval_only_header, ""]
@@ -128,12 +142,9 @@ async def run_chat(question: str, history: list[dict], session_id: str, ui_sourc
                 yield {"type": "done", "trace_id": tr.id, "provider": hit["provider"], "model": hit["model"], "cached": True}
                 return
 
-        # we don't give out owner/agent contact details
+        # owners' and agents' numbers are never given out; DarGlobal's own sales contact is
         if get_reference().compiled("contact_request").search(question):
-            pr = get_prompts()
-            m = re.search(r"\b(\d{6,8})\b", question)  # Wasalt listing id
-            row = store.db.execute("SELECT url FROM properties WHERE id=?", (f"ws-{m.group(1)}",)).fetchone() if m else None
-            text = render(pr.contact_reply, link=render(pr.contact_link, url=row[0]) if row else "")
+            text = contact_reply(question, ui_source)
             tr.intent, tr.router_mode, tr.answer = "contact_request", "rules", text
             yield {"type": "meta", "route": {"intent": "contact_request"}, "cards": [], "sources": []}
             yield {"type": "token", "text": text}

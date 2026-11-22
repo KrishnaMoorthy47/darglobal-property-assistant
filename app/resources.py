@@ -33,6 +33,8 @@ class Prompts(_Strict):
     greeting_reply: str
     contact_reply: str
     contact_link: str
+    darglobal_contact_reply: str
+    darglobal_contact_note: str
     out_of_scope_reply: str
     retrieval_only_header: str
     interrupted_notice: str
@@ -74,7 +76,13 @@ class PipelineRef(_Strict):
     boilerplate: list[str]
 
 
+class CompanyContact(_Strict):
+    phone: str
+    website: str
+
+
 class Reference(_Strict):
+    darglobal_contact: CompanyContact
     currency_usd_rates: dict[str, float]
     default_currency: dict[str, str]
     patterns: Patterns

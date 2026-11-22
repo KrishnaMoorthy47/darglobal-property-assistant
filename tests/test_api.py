@@ -74,4 +74,4 @@ def test_contact_details_are_never_shared(client):
     evs = events(client.post("/api/chat", json={"message": "What is the agent's phone number for listing 5879365?"}))
     text = "".join(e.get("text", "") for e in evs if e["type"] == "token")
     assert evs[-1]["provider"] == "rules"
-    assert "don't share personal contact details" in text
+    assert "don't share the personal phone numbers" in text

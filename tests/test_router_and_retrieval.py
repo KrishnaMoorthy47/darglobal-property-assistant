@@ -120,3 +120,11 @@ def test_country_aliases_in_filters():
 def test_contact_details_are_removed(text, removed):
     from app.resources import redact_contacts
     assert (redact_contacts(text) != text) is removed
+
+
+def test_contact_replies():
+    from app.rag.chat import contact_reply
+    dg = contact_reply("What's the phone number for Da Vinci Tower?", None)
+    assert "+971 4562 9616" in dg and "davinci-tower" in dg
+    ws = contact_reply("owner's number for listing 5907500", None)
+    assert "wasalt.sa" in ws and "5907500" in ws

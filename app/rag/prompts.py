@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from app.config import get_settings
 from app.rag.router import Route
-from app.resources import get_prompts, render
+from app.resources import get_prompts, get_reference, render
 
 
 def _fmt_prop(p: dict) -> str:
@@ -55,7 +55,9 @@ def build_messages(question: str, history: list[dict], r: Route, ctx: dict, mani
         notes.append(render(cn.filters, filters=ctx["filters"]))
 
     sw = manifest.get("scraped_window", {})
-    system = render(pr.answer_system, language="Arabic" if r.language == "ar" else "English",
+    dg = get_reference().darglobal_contact
+    note = render(pr.darglobal_contact_note, dg_phone=dg.phone, dg_website=dg.website)
+    system = render(pr.answer_system, language="Arabic" if r.language == "ar" else "English", darglobal_contact_note=note,
                     dg_date=sw.get("darglobal", "recently"), ws_date=sw.get("wasalt", "recently"))
     context = "CONTEXT:\n" + ("\n\n".join(blocks) if blocks else cn.empty_context)
     if notes:

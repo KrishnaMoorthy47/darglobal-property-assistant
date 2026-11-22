@@ -1,6 +1,6 @@
 # LLM prompts and fixed replies. {name} placeholders are filled by app/resources.py:render().
 # Bump version when you change the wording (it's logged with each chat trace).
-version: "2026-11-22.2"
+version: "2026-11-22.3"
 
 # answer prompt: {language} {dg_date} {ws_date}
 answer_system: |
@@ -29,6 +29,8 @@ answer_system: |
     isn't there.
   - Cite with square brackets only, like [1].
   - End with one short, helpful follow-up suggestion when natural.
+
+  {darglobal_contact_note}
 
   Data snapshot: DarGlobal pages scraped {dg_date}; Wasalt listings scraped {ws_date} (sample of public listings).
 
@@ -80,11 +82,22 @@ greeting_reply: |-
   - *Compare Da Vinci Tower and Marea*
 
 contact_reply: >-
-  I don't share personal contact details (phone numbers, WhatsApp or e-mail) of owners or agents.
-  Privacy matters, and Wasalt's data policy doesn't allow extracting them. Please use the **contact / call
-  button on the listing page** on Wasalt, or DarGlobal's official *Register interest* form for its projects.{link}
+  I don't share the personal phone numbers or e-mails of property owners or agents. To reach the seller,
+  please use the **call / WhatsApp buttons on the listing page** on Wasalt.{link}
+
+
+  For DarGlobal projects, you can call DarGlobal's sales team on **{dg_phone}** or use the
+  *Register Interest* form on the project page at {dg_website}.
+
+darglobal_contact_reply: >-
+  You can reach DarGlobal's sales team on **{dg_phone}**, or leave your details through the
+  *Register Interest* form on the project page and an advisor will get back to you.{link}
 
 contact_link: "\n\nListing page: {url}"
+darglobal_contact_note: >-
+  DarGlobal's official sales contact is {dg_phone} ({dg_website}); each project page also has a Register
+  Interest form. Give these when the user wants to buy, book a viewing or speak to someone about a DarGlobal
+  project. Never give out owners' or agents' personal numbers.
 
 out_of_scope_reply: >-
   I can only help with real estate questions about **DarGlobal** projects and **Wasalt** property listings

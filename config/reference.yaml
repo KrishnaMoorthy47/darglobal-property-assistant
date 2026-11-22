@@ -4,6 +4,11 @@ currency_usd_rates: {USD: 1.0, AED: 0.2723, SAR: 0.2667, QAR: 0.2747, OMR: 2.600
 default_currency: {darglobal: USD, wasalt: SAR}
 
 # case-insensitive regexes
+# DarGlobal's official sales contact, as published on every page of darglobal.co.uk
+darglobal_contact:
+  phone: "+971 4562 9616"
+  website: "https://www.darglobal.co.uk"
+
 patterns:
   greeting: '^\s*(hi|hello|hey|salam|salaam|marhaba|مرحبا|السلام عليكم|good (morning|evening|afternoon)|thanks?|thank you|شكرا)[\s!.,]*$'
   injection: '(ignore (all|previous|the above)|disregard (the|all|previous)|system prompt|you are now|jailbreak|developer mode|reveal your (prompt|instructions))'
