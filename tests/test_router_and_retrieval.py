@@ -128,3 +128,14 @@ def test_contact_replies():
     assert "+971 4562 9616" in dg and "davinci-tower" in dg
     ws = contact_reply("owner's number for listing 5907500", None)
     assert "wasalt.sa" in ws and "5907500" in ws
+
+
+def test_named_project_uses_its_own_pages():
+    from app.rag.chat import retrieve
+    from app.rag.router import Route
+    s = get_store()
+    q = "Da Vinci Tower payment plan"
+    r = Route.model_validate({"intent": "knowledge", "source": "darglobal", "project_names": ["Da Vinci Tower"], "search_query": q})
+    ctx = retrieve(r, "What's the payment plan?", None, s.embed(q))
+    urls = {c["url"] for c in ctx["chunks"] if c["doc_type"] != "company"}
+    assert urls == {"https://www.darglobal.co.uk/davinci-tower-by-pagani"}

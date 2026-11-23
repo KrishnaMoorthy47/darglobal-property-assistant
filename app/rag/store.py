@@ -130,11 +130,17 @@ class Store:
         self._remote_cache[key] = v[0]
         return QVec(v[0], "remote")
 
-    def search_chunks(self, query: str, qvec: QVec, source: str | None = None, k: int | None = None) -> list[dict]:
+    def search_chunks(self, query: str, qvec: QVec, source: str | None = None, k: int | None = None,
+                      urls: list[str] | None = None, doc_types: list[str] | None = None) -> list[dict]:
+        """Hybrid search over page text. urls / doc_types restrict it to certain pages."""
         c = self.cfg
         k = k or c.top_k_chunks
         pool = c.candidate_pool
         where, params = ("AND c.source = ?", [source]) if source else ("", [])
+        for col, vals in (("url", urls), ("doc_type", doc_types)):
+            if vals:
+                where += f" AND c.{col} IN ({','.join('?' * len(vals))})"
+                params += list(vals)
         bm25_ranked: list[int] = []
         q = fts_query(query)
         if q:
@@ -145,9 +151,10 @@ class Store:
             bm25_ranked = [r[0] for r in rows]
 
         sims = self.emb[qvec.space]["chunk"] @ qvec.v
-        if source:
-            mask = np.array([1.0 if s == source else 0.0 for s in self._chunk_sources()], dtype=np.float32)
-            sims = np.where(mask > 0, sims, -1.0)
+        if source or urls or doc_types:
+            keep = np.array([(not source or s == source) and (not urls or u in urls) and (not doc_types or d in doc_types)
+                             for s, u, d in self._chunk_meta()])
+            sims = np.where(keep, sims, -1.0)
         top = np.argsort(-sims)[:pool]
         vec_ranked = [self.chunk_ids[i] for i in top]
 
@@ -159,10 +166,12 @@ class Store:
         best = sorted(scores, key=scores.get, reverse=True)
 
         out, per_url = [], {}
+        if urls:  # vector ranking covers every chunk; keep only the requested pages
+            best = [rid for rid in best if sims[self.chunk_pos[rid]] > -1.0]
         for rid in best:
             row = dict(self.db.execute("SELECT * FROM chunks WHERE rowid=?", (rid,)).fetchone())
             per_url[row["url"]] = per_url.get(row["url"], 0) + 1
-            if per_url[row["url"]] > c.max_chunks_per_page:
+            if per_url[row["url"]] > (k if urls else c.max_chunks_per_page):
                 continue
             row["score"] = round(scores[rid], 4)
             row["cosine"] = round(float(sims[self.chunk_pos[rid]]), 3)
@@ -172,8 +181,8 @@ class Store:
         return out
 
     @lru_cache(maxsize=1)  # noqa: B019 - singleton
-    def _chunk_sources(self) -> tuple[str, ...]:
-        return tuple(r[0] for r in self.db.execute("SELECT source FROM chunks ORDER BY rowid"))
+    def _chunk_meta(self) -> tuple[tuple[str, str, str], ...]:
+        return tuple(tuple(r) for r in self.db.execute("SELECT source, url, doc_type FROM chunks ORDER BY rowid"))
 
     def _where(self, f: Filters) -> tuple[str, list]:
         clauses, params = [], []

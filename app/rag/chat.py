@@ -78,8 +78,13 @@ def retrieve(r: Route, question: str, ui_source: str | None, qvec) -> dict:
             props += store.search_properties(f, q, qvec, k=c.compare_property_k)["items"]
         chunks = store.search_chunks(q, qvec, source=f.source, k=c.top_k_chunks + 2)
     else:
-        chunks = store.search_chunks(q, qvec, source=f.source, k=c.top_k_chunks)
         named = store.find_projects(r.project_names) if r.project_names else []
+        if named:
+            # a named project: its own pages plus general company info (FAQ, payments), not other projects
+            chunks = store.search_chunks(q, qvec, urls=[p["url"] for p in named], k=c.top_k_chunks)
+            chunks += store.search_chunks(q, qvec, source="darglobal", doc_types=["company"], k=2)
+        else:
+            chunks = store.search_chunks(q, qvec, source=f.source, k=c.top_k_chunks)
         props = named or ([] if f.source == "wasalt" else store.search_properties(
             f if f.source else type(f)(source="darglobal"), q, qvec, k=c.knowledge_property_k)["items"])
     seen, uniq = set(), []
