@@ -242,7 +242,7 @@ def wasalt() -> tuple[list[Property], list[Chunk]]:
     chunks = []
     groups: dict[tuple, list[float]] = {}
     for p in props:
-        if p.rent_frequency in ("unverified", "monthly"):
+        if p.purpose == "rent" and p.rent_frequency != "yearly":
             continue
         groups.setdefault((p.city, p.property_type, p.purpose), []).append(p.price)
     for (city, ptype, purpose), prices in groups.items():

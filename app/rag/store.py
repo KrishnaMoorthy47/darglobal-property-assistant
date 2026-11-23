@@ -295,7 +295,7 @@ class Store:
             subset = [r for r in rows if ptype is None or ptype in f"{r.get('property_type')} {r.get('name')}".lower()]
             for purpose in ("sale", "rent"):
                 priced = [r for r in subset if r.get("purpose") == purpose and r.get("price") and r.get("currency")
-                          and r.get("rent_frequency") not in ("unverified", "monthly")]
+                          and (purpose != "rent" or r.get("rent_frequency") == "yearly")]
                 if len(priced) < get_settings().retrieval.stats_min_count:
                     continue
                 cur = statistics.mode(r["currency"] for r in priced)

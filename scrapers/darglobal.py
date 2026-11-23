@@ -16,7 +16,7 @@ from datetime import UTC, datetime
 
 from playwright.async_api import async_playwright
 
-from scrapers.common import RAW_DIR, append_jsonl, load_done
+from scrapers.common import RAW_DIR, append_jsonl, load_done, robots_rules
 
 log = logging.getLogger("darglobal")
 BASE = "https://www.darglobal.co.uk"
@@ -100,7 +100,14 @@ async def scrape(blog_limit: int, press_limit: int, delay: float) -> None:
         browser = await p.chromium.launch(headless=True)
         ctx = await browser.new_context(viewport={"width": 1366, "height": 900}, locale="en-GB")
         page = await ctx.new_page()
-        urls = select_urls(await get_sitemap_urls(page), blog_limit, press_limit)
+        # fetched through the browser: the site's firewall answers plain HTTP clients with a challenge page
+        resp = await page.goto(f"{BASE}/robots.txt", wait_until="domcontentloaded", timeout=60000)
+        await page.wait_for_timeout(3000)  # let a firewall check finish and reload the file
+        robots = robots_rules(resp.status if resp else 0, await page.inner_text("body"))
+        if robots.disallow_all:
+            log.error("could not read robots.txt; not scraping")
+        urls = [u for u in select_urls(await get_sitemap_urls(page), blog_limit, press_limit)
+                if robots.can_fetch(u)]
         todo = [u for u in urls if u not in done]
         log.info("sitemap selection=%d, already done=%d, to scrape=%d", len(urls), len(done), len(todo))
         ok = fail = 0

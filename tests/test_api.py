@@ -75,3 +75,14 @@ def test_contact_details_are_never_shared(client):
     text = "".join(e.get("text", "") for e in evs if e["type"] == "token")
     assert evs[-1]["provider"] == "rules"
     assert "don't share the personal phone numbers" in text
+
+
+def test_client_ip_ignores_forwarded_for():
+    from starlette.requests import Request
+
+    from app.main import client_ip
+    def req(headers):
+        return Request({"type": "http", "headers": [(k.encode(), v.encode()) for k, v in headers.items()],
+                        "client": ("10.0.0.1", 1234)})
+    assert client_ip(req({"x-forwarded-for": "1.2.3.4"})) == "10.0.0.1"
+    assert client_ip(req({"true-client-ip": "5.6.7.8", "x-forwarded-for": "1.2.3.4"})) == "5.6.7.8"

@@ -74,8 +74,9 @@ _day: dict[str, deque] = defaultdict(deque)
 
 
 def client_ip(request: Request) -> str:
-    fwd = request.headers.get("x-forwarded-for")
-    return fwd.split(",")[0].strip() if fwd else (request.client.host if request.client else "unknown")
+    # Render sits behind Cloudflare, which sets True-Client-IP itself. X-Forwarded-For is not used: Render's
+    # proxy appends to whatever the client sent, so its first entry can be faked to dodge the rate limit.
+    return request.headers.get("true-client-ip") or (request.client.host if request.client else "unknown")
 
 
 def rate_limit(request: Request) -> str:

@@ -139,3 +139,26 @@ def test_named_project_uses_its_own_pages():
     ctx = retrieve(r, "What's the payment plan?", None, s.embed(q))
     urls = {c["url"] for c in ctx["chunks"] if c["doc_type"] != "company"}
     assert urls == {"https://www.darglobal.co.uk/davinci-tower-by-pagani"}
+
+
+def test_robots_rules():
+    from scrapers.common import robots_rules
+    # same shape as wasalt.sa/robots.txt: Allow: / listed before Disallow: /search
+    text = "User-agent: ChatGPT-User\nAllow: /search\n\nUser-agent: *\nAllow: /\nDisallow: /search\nDisallow: /cdn-cgi/rum\n"
+    rp = robots_rules(200, text)
+    assert rp.can_fetch("https://wasalt.sa/en/property/sale/x-1")
+    assert not rp.can_fetch("https://wasalt.sa/search?q=villa")
+    assert not rp.can_fetch("https://wasalt.sa/cdn-cgi/rum")
+    wild = robots_rules(200, "User-agent: *\nDisallow: /*.pdf$\n")
+    assert not wild.can_fetch("https://x.com/a/b.pdf") and wild.can_fetch("https://x.com/a/b.pdf?x=1")
+    assert robots_rules(404, "").can_fetch("https://x.com/a")
+    assert not robots_rules(503, "").can_fetch("https://x.com/a")
+    assert not robots_rules(200, "<html>firewall challenge</html>").can_fetch("https://x.com/a")
+
+
+def test_rent_stats_only_use_yearly_rents():
+    from app.rag.store import Store
+    rows = [{"purpose": "rent", "price": p, "currency": "SAR", "rent_frequency": f}
+            for p, f in [(50000, "yearly"), (60000, "yearly"), (70000, "yearly"), (5000, None), (4000, "monthly")]]
+    (st,) = Store._stats(rows)
+    assert st["count"] == 3 and st["min"] == 50000

@@ -139,22 +139,30 @@ async def main(llm_router: bool, answers: bool, remote_embeddings: bool = False)
     report = {"run_at": datetime.now(UTC).isoformat(timespec="seconds"), "cases": len(cases),
               "mode": "+".join(["retrieval", "router-rules"] + (["router-llm"] if llm_router else []) + (["answers"] if answers else []))}
     prev = json.loads((HERE / "report.json").read_text(encoding="utf-8")) if (HERE / "report.json").exists() else {}
+    now = report["run_at"]
 
-    report["retrieval"] = await eval_retrieval(by_type["retrieval"])
+    def carried(section: dict) -> dict:
+        # results kept from an earlier run keep the date they were measured
+        return {**section, "measured_at": section.get("measured_at") or f"{prev.get('run_at', '?')[:10]} or earlier"}
+
+    report["retrieval"] = {**await eval_retrieval(by_type["retrieval"]), "measured_at": now}
     if remote_embeddings:
         try:
-            report["retrieval_remote"] = await eval_retrieval(by_type["retrieval"], remote=True)
+            report["retrieval_remote"] = {**await eval_retrieval(by_type["retrieval"], remote=True), "measured_at": now}
         except AllProvidersUnavailable:
             print("OpenRouter embeddings unavailable (daily limit?); keeping the previous OpenRouter retrieval score")
     if "retrieval_remote" not in report and prev.get("retrieval_remote"):
-        report["retrieval_remote"] = prev["retrieval_remote"]
+        report["retrieval_remote"] = carried(prev["retrieval_remote"])
     report["router"] = await eval_router(by_type["router"], llm_router)
-    if not llm_router and "llm" in prev.get("router", {}):
-        report["router"]["llm"] = prev["router"]["llm"]
+    report["router"]["rules"]["measured_at"] = now
+    if llm_router:
+        report["router"]["llm"]["measured_at"] = now
+    elif "llm" in prev.get("router", {}):
+        report["router"]["llm"] = carried(prev["router"]["llm"])
     if answers:
-        report["answers"] = await eval_answers(by_type["answer"])
+        report["answers"] = {**await eval_answers(by_type["answer"]), "measured_at": now}
     elif prev.get("answers"):
-        report["answers"] = prev["answers"]
+        report["answers"] = carried(prev["answers"])
 
     summary = {
         "retrieval_hit_at_5": report["retrieval"]["hit_at_5"],
@@ -172,10 +180,16 @@ async def main(llm_router: bool, answers: bool, remote_embeddings: bool = False)
         summary.update({"answer_correctness": a["correctness"], "answer_faithfulness": a["faithfulness"],
                         "refusal_accuracy": a["refusal_accuracy"], "answer_p50_latency_ms": a["p50_latency_ms"]})
     report["summary"] = summary
+    sections = {"retrieval_openrouter": report.get("retrieval_remote"), "router_llm": report["router"].get("llm"),
+                "answer": report.get("answers"), "refusal": report.get("answers")}
+    report["carried_over"] = {k: s["measured_at"] for k in summary for prefix, s in sections.items()
+                              if s and k.startswith(prefix) and s["measured_at"] != now}
     (HERE / "report.json").write_text(json.dumps(report, indent=2, ensure_ascii=False), encoding="utf-8")
 
-    md = ["# Evaluation report", f"Run: {report['run_at']} · mode: {report['mode']}", "", "| Metric | Value |", "|---|---|"]
-    md += [f"| {k.replace('_', ' ')} | {v} |" for k, v in summary.items()]
+    md = ["# Evaluation report", f"Run: {report['run_at']} · mode: {report['mode']}", "",
+          "Metrics not measured in this run are carried over from an earlier run, with the date they were measured.", "",
+          "| Metric | Value | Measured |", "|---|---|---|"]
+    md += [f"| {k.replace('_', ' ')} | {v} | {report['carried_over'].get(k, 'this run')} |" for k, v in summary.items()]
     md += ["", "## Retrieval misses"] + [f"- `{r['id']}` {r['question']} -> top: {r['top'][:2]}"
                                          for r in report["retrieval"]["rows"] if not r["rank"]] or ["- none"]
     (HERE / "report.md").write_text("\n".join(md) + "\n", encoding="utf-8")

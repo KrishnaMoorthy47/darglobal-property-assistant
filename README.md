@@ -57,7 +57,7 @@ flowchart LR
   API --> T[("traces: SQLite + Supabase")] --> A["/admin"]
 ```
 
-All the models come from OpenRouter's free tier:
+OpenRouter's free models are the primary providers, with Groq as a fallback:
 
 | Job | Model | Fallback |
 |---|---|---|
@@ -105,8 +105,8 @@ Some choices worth explaining:
 - Wasalt (wasalt.sa): about 1,100 sale and rent listings taken from the sitemap. Each listing page has its data
   as JSON in `__NEXT_DATA__`, which is easier to rely on than the HTML.
 
-Both scrapers follow robots.txt (and Wasalt's llms.txt), make about one request a second, and don't store
-owner or agent names or phone numbers. Some owners type their mobile number into the listing description, so
+Both scrapers read the site's robots.txt and skip any URL it disallows (Wasalt's llms.txt was reviewed by
+hand), make about one request a second, and don't store owner or agent names or phone numbers. Some owners type their mobile number into the listing description, so
 phone numbers and e-mail addresses are stripped from the text as well, and the build fails if any are left. Counts and scrape dates are in `data/manifest.json`.
 
 ## Evaluation

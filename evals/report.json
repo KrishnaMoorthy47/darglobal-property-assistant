@@ -1,5 +1,5 @@
 {
-  "run_at": "2026-11-22T17:54:47+00:00",
+  "run_at": "2026-11-23T06:03:23+00:00",
   "cases": 32,
   "mode": "retrieval+router-rules",
   "retrieval": {
@@ -156,7 +156,8 @@
           "https://www.darglobal.co.uk/aida-360"
         ]
       }
-    ]
+    ],
+    "measured_at": "2026-11-23T06:03:23+00:00"
   },
   "retrieval_remote": {
     "hit_at_5": 1.0,
@@ -312,7 +313,8 @@
           "https://www.darglobal.co.uk/aida-360"
         ]
       }
-    ]
+    ],
+    "measured_at": "2026-11-22 or earlier"
   },
   "router": {
     "rules": {
@@ -389,7 +391,8 @@
           "filter_score": 0.67,
           "mode": "rules"
         }
-      ]
+      ],
+      "measured_at": "2026-11-23T06:03:23+00:00"
     },
     "llm": {
       "intent_accuracy": 1.0,
@@ -465,7 +468,8 @@
           "filter_score": 1.0,
           "mode": "llm"
         }
-      ]
+      ],
+      "measured_at": "2026-11-22 or earlier"
     }
   },
   "answers": {
@@ -558,7 +562,8 @@
         "refused_properly": 1,
         "reason": "short"
       }
-    ]
+    ],
+    "measured_at": "2026-11-22 or earlier"
   },
   "summary": {
     "retrieval_hit_at_5": 1.0,
@@ -573,5 +578,15 @@
     "answer_faithfulness": 1.0,
     "refusal_accuracy": 1.0,
     "answer_p50_latency_ms": 7946
+  },
+  "carried_over": {
+    "retrieval_openrouter_hit_at_5": "2026-11-22 or earlier",
+    "retrieval_openrouter_mrr": "2026-11-22 or earlier",
+    "router_llm_intent_accuracy": "2026-11-22 or earlier",
+    "router_llm_filter_accuracy": "2026-11-22 or earlier",
+    "answer_correctness": "2026-11-22 or earlier",
+    "answer_faithfulness": "2026-11-22 or earlier",
+    "refusal_accuracy": "2026-11-22 or earlier",
+    "answer_p50_latency_ms": "2026-11-22 or earlier"
   }
 }

@@ -20,7 +20,7 @@ from selectolax.lexbor import LexborHTMLParser as HTMLParser
 from tenacity import retry, retry_if_exception_type, stop_after_attempt, wait_exponential
 
 from app.resources import redact_contacts
-from scrapers.common import RAW_DIR, USER_AGENT, append_jsonl, load_done, polite_sleep
+from scrapers.common import RAW_DIR, USER_AGENT, append_jsonl, load_done, polite_sleep, robots_rules
 
 log = logging.getLogger("wasalt")
 SITEMAP = "https://cdn.wasalt.sa/sitemap/product_sitemap_en_sa.xml.gz"
@@ -145,7 +145,12 @@ def parse_listing(url: str, html: str) -> dict | None:
 
 def main(n: int, rent_share: float, delay: float) -> None:
     done = load_done(OUT)
+    robots = robots_rules(*fetch("https://wasalt.sa/robots.txt"))
     urls = [u for u in sample_urls(n, rent_share) if u not in done]
+    blocked = [u for u in urls if not robots.can_fetch(u)]
+    if blocked:
+        log.info("skipping %d URLs disallowed by robots.txt", len(blocked))
+        urls = [u for u in urls if u not in set(blocked)]
     log.info("to scrape: %d (already %d)", len(urls), len(done))
     ok = gone = fail = 0
     consecutive_blocks = 0
