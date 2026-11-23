@@ -87,12 +87,11 @@
     if (d.eval) {
       const e = d.eval, s = e.summary || {};
       $("#eval").innerHTML = `<table class="t">${Object.entries(s).map(([k, v]) =>
-        `<tr><td>${esc(k.replaceAll("_", " "))}${(e.carried_over || {})[k] ? ` <span class="muted" style="font-size:11px">(measured ${esc(e.carried_over[k])})</span>` : ""}</td><td><b>${typeof v === "number" && v <= 1 && !k.includes("ms") && !k.includes("cases") ? pct(v) : esc(v)}</b></td></tr>`).join("")}</table>
-        <div class="muted" style="margin-top:6px;font-size:12px">Run ${esc(e.run_at)} · ${e.cases} cases · mode: ${esc(e.mode)}</div>`;
+        `<tr><td>${esc(k.replaceAll("_", " "))}${(e.carried_over || []).includes(k) ? ` <span class="muted" style="font-size:11px">(earlier run)</span>` : ""}</td><td><b>${typeof v === "number" && v <= 1 && !k.includes("ms") && !k.includes("cases") ? pct(v) : esc(v)}</b></td></tr>`).join("")}</table>
+        <div class="muted" style="margin-top:6px;font-size:12px">${e.cases} cases · mode: ${esc(e.mode)}</div>`;
     }
     const c = (d.manifest || {}).counts || {};
     $("#kbase").innerHTML = `<table class="t">
-      <tr><td>Built</td><td>${esc(d.manifest.built_at)}</td></tr>
       <tr><td>Embeddings</td><td>${esc(d.embeddings_in_use)}</td></tr>
       <tr><td>DarGlobal projects / chunks</td><td>${c.darglobal_projects} / ${c.darglobal_chunks}</td></tr>
       <tr><td>Wasalt listings</td><td>${c.wasalt_listings} (${esc(JSON.stringify(c.wasalt_by_purpose || {}))})</td></tr>

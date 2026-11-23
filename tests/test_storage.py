@@ -34,7 +34,7 @@ def test_insert_upsert_update_requests():
     sink = make_sink(handler)
     asyncio.run(run_ops(sink, lambda s: (
         s.insert("chat_logs", {"id": "t1", "question": "hi", "answer": "hello", "session_id": "s1"}),
-        s.upsert("provider_usage", {"day": "2026-11-22", "provider": "groq", "model": "m", "requests": 3}, "day,provider,model"),
+        s.upsert("provider_usage", {"day": "2000-01-01", "provider": "groq", "model": "m", "requests": 3}, "day,provider,model"),
         s.update("chat_logs", {"id": "t1"}, {"feedback": 1}),
     )))
     assert [m for m, *_ in seen] == ["POST", "POST", "PATCH"]

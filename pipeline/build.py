@@ -14,7 +14,6 @@ import re
 import sqlite3
 import statistics
 from collections import Counter
-from datetime import UTC, datetime
 from pathlib import Path
 
 import numpy as np
@@ -398,7 +397,6 @@ def main(enrich: bool, remote_embed: bool = False) -> None:
             (ROOT / "data" / f).unlink(missing_ok=True)
 
     manifest = {
-        "built_at": datetime.now(UTC).isoformat(timespec="seconds"),
         "scraped_window": {
             "darglobal": _scrape_date(RAW / "darglobal" / "pages.jsonl"),
             "wasalt": _scrape_date(RAW / "wasalt" / "listings.jsonl"),

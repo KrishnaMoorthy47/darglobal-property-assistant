@@ -1,5 +1,4 @@
 {
-  "run_at": "2026-11-23T06:12:01+00:00",
   "cases": 32,
   "mode": "retrieval+router-rules",
   "retrieval": {
@@ -155,8 +154,7 @@
           "https://wasalt.sa/en"
         ]
       }
-    ],
-    "measured_at": "2026-11-23T06:12:01+00:00"
+    ]
   },
   "retrieval_remote": {
     "hit_at_5": 1.0,
@@ -313,7 +311,7 @@
         ]
       }
     ],
-    "measured_at": "2026-11-22 or earlier"
+    "from_earlier_run": true
   },
   "router": {
     "rules": {
@@ -390,8 +388,7 @@
           "filter_score": 0.67,
           "mode": "rules"
         }
-      ],
-      "measured_at": "2026-11-23T06:12:01+00:00"
+      ]
     },
     "llm": {
       "intent_accuracy": 1.0,
@@ -468,7 +465,7 @@
           "mode": "llm"
         }
       ],
-      "measured_at": "2026-11-22 or earlier"
+      "from_earlier_run": true
     }
   },
   "answers": {
@@ -562,7 +559,7 @@
         "reason": "short"
       }
     ],
-    "measured_at": "2026-11-22 or earlier"
+    "from_earlier_run": true
   },
   "summary": {
     "retrieval_hit_at_5": 1.0,
@@ -578,14 +575,14 @@
     "refusal_accuracy": 1.0,
     "answer_p50_latency_ms": 7946
   },
-  "carried_over": {
-    "retrieval_openrouter_hit_at_5": "2026-11-22 or earlier",
-    "retrieval_openrouter_mrr": "2026-11-22 or earlier",
-    "router_llm_intent_accuracy": "2026-11-22 or earlier",
-    "router_llm_filter_accuracy": "2026-11-22 or earlier",
-    "answer_correctness": "2026-11-22 or earlier",
-    "answer_faithfulness": "2026-11-22 or earlier",
-    "refusal_accuracy": "2026-11-22 or earlier",
-    "answer_p50_latency_ms": "2026-11-22 or earlier"
-  }
+  "carried_over": [
+    "retrieval_openrouter_hit_at_5",
+    "retrieval_openrouter_mrr",
+    "router_llm_intent_accuracy",
+    "router_llm_filter_accuracy",
+    "answer_correctness",
+    "answer_faithfulness",
+    "refusal_accuracy",
+    "answer_p50_latency_ms"
+  ]
 }

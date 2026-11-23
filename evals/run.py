@@ -12,7 +12,6 @@ import asyncio
 import json
 import statistics
 import time
-from datetime import UTC, datetime
 from pathlib import Path
 
 from app.config import get_settings
@@ -136,31 +135,26 @@ async def eval_answers(cases: list[dict]) -> dict:
 async def main(llm_router: bool, answers: bool, remote_embeddings: bool = False) -> None:
     cases = load_cases()
     by_type = {t: [c for c in cases if c["type"] == t] for t in ("retrieval", "router", "answer")}
-    report = {"run_at": datetime.now(UTC).isoformat(timespec="seconds"), "cases": len(cases),
+    report = {"cases": len(cases),
               "mode": "+".join(["retrieval", "router-rules"] + (["router-llm"] if llm_router else []) + (["answers"] if answers else []))}
     prev = json.loads((HERE / "report.json").read_text(encoding="utf-8")) if (HERE / "report.json").exists() else {}
-    now = report["run_at"]
-
     def carried(section: dict) -> dict:
-        # results kept from an earlier run keep the date they were measured
-        return {**section, "measured_at": section.get("measured_at") or f"{prev.get('run_at', '?')[:10]} or earlier"}
+        # results kept from an earlier run are marked as such
+        return {**{k: v for k, v in section.items() if k != "measured_at"}, "from_earlier_run": True}
 
-    report["retrieval"] = {**await eval_retrieval(by_type["retrieval"]), "measured_at": now}
+    report["retrieval"] = await eval_retrieval(by_type["retrieval"])
     if remote_embeddings:
         try:
-            report["retrieval_remote"] = {**await eval_retrieval(by_type["retrieval"], remote=True), "measured_at": now}
+            report["retrieval_remote"] = await eval_retrieval(by_type["retrieval"], remote=True)
         except AllProvidersUnavailable:
             print("OpenRouter embeddings unavailable (daily limit?); keeping the previous OpenRouter retrieval score")
     if "retrieval_remote" not in report and prev.get("retrieval_remote"):
         report["retrieval_remote"] = carried(prev["retrieval_remote"])
     report["router"] = await eval_router(by_type["router"], llm_router)
-    report["router"]["rules"]["measured_at"] = now
-    if llm_router:
-        report["router"]["llm"]["measured_at"] = now
-    elif "llm" in prev.get("router", {}):
+    if not llm_router and "llm" in prev.get("router", {}):
         report["router"]["llm"] = carried(prev["router"]["llm"])
     if answers:
-        report["answers"] = {**await eval_answers(by_type["answer"]), "measured_at": now}
+        report["answers"] = await eval_answers(by_type["answer"])
     elif prev.get("answers"):
         report["answers"] = carried(prev["answers"])
 
@@ -182,14 +176,14 @@ async def main(llm_router: bool, answers: bool, remote_embeddings: bool = False)
     report["summary"] = summary
     sections = {"retrieval_openrouter": report.get("retrieval_remote"), "router_llm": report["router"].get("llm"),
                 "answer": report.get("answers"), "refusal": report.get("answers")}
-    report["carried_over"] = {k: s["measured_at"] for k in summary for prefix, s in sections.items()
-                              if s and k.startswith(prefix) and s["measured_at"] != now}
+    report["carried_over"] = [k for k in summary for prefix, s in sections.items()
+                              if s and k.startswith(prefix) and s.get("from_earlier_run")]
     (HERE / "report.json").write_text(json.dumps(report, indent=2, ensure_ascii=False), encoding="utf-8")
 
-    md = ["# Evaluation report", f"Run: {report['run_at']} · mode: {report['mode']}", "",
-          "Metrics not measured in this run are carried over from an earlier run, with the date they were measured.", "",
+    md = ["# Evaluation report", f"Mode: {report['mode']}", "",
+          "Metrics not measured in this run are carried over from an earlier run.", "",
           "| Metric | Value | Measured |", "|---|---|---|"]
-    md += [f"| {k.replace('_', ' ')} | {v} | {report['carried_over'].get(k, 'this run')} |" for k, v in summary.items()]
+    md += [f"| {k.replace('_', ' ')} | {v} | {'earlier run' if k in report['carried_over'] else 'this run'} |" for k, v in summary.items()]
     md += ["", "## Retrieval misses"] + [f"- `{r['id']}` {r['question']} -> top: {r['top'][:2]}"
                                          for r in report["retrieval"]["rows"] if not r["rank"]] or ["- none"]
     (HERE / "report.md").write_text("\n".join(md) + "\n", encoding="utf-8")
