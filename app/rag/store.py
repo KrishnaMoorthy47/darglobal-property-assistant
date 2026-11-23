@@ -151,11 +151,12 @@ class Store:
             bm25_ranked = [r[0] for r in rows]
 
         sims = self.emb[qvec.space]["chunk"] @ qvec.v
+        candidates = np.arange(len(sims))
         if source or urls or doc_types:
             keep = np.array([(not source or s == source) and (not urls or u in urls) and (not doc_types or d in doc_types)
                              for s, u, d in self._chunk_meta()])
-            sims = np.where(keep, sims, -1.0)
-        top = np.argsort(-sims)[:pool]
+            candidates = candidates[keep]  # drop filtered-out chunks entirely, even when fewer than `pool` remain
+        top = candidates[np.argsort(-sims[candidates])[:pool]]
         vec_ranked = [self.chunk_ids[i] for i in top]
 
         # RRF, since BM25 and cosine scores aren't on the same scale
@@ -166,8 +167,6 @@ class Store:
         best = sorted(scores, key=scores.get, reverse=True)
 
         out, per_url = [], {}
-        if urls:  # vector ranking covers every chunk; keep only the requested pages
-            best = [rid for rid in best if sims[self.chunk_pos[rid]] > -1.0]
         for rid in best:
             row = dict(self.db.execute("SELECT * FROM chunks WHERE rowid=?", (rid,)).fetchone())
             per_url[row["url"]] = per_url.get(row["url"], 0) + 1

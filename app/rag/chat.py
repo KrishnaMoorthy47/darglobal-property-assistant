@@ -73,12 +73,13 @@ def retrieve(r: Route, question: str, ui_source: str | None, qvec) -> dict:
         props, stats, relaxed, total = res["items"], res["stats"], res["relaxed"], res["total_matches"]
         chunks = store.search_chunks(q, qvec, source=f.source, k=c.chunks_with_property_search)
     elif r.intent == "compare":
-        props = store.find_projects(r.project_names) if r.project_names else []
+        # named projects are DarGlobal's; skip them when the user limited the search to Wasalt
+        props = store.find_projects(r.project_names) if r.project_names and f.source != "wasalt" else []
         if len(props) < 2:
             props += store.search_properties(f, q, qvec, k=c.compare_property_k)["items"]
         chunks = store.search_chunks(q, qvec, source=f.source, k=c.top_k_chunks + 2)
     else:
-        named = store.find_projects(r.project_names) if r.project_names else []
+        named = store.find_projects(r.project_names) if r.project_names and f.source != "wasalt" else []
         if named:
             # a named project: its own pages plus general company info (FAQ, payments), not other projects
             chunks = store.search_chunks(q, qvec, urls=[p["url"] for p in named], k=c.top_k_chunks)

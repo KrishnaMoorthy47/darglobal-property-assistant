@@ -1,5 +1,5 @@
 {
-  "run_at": "2026-11-23T06:03:23+00:00",
+  "run_at": "2026-11-23T06:12:01+00:00",
   "cases": 32,
   "mode": "retrieval+router-rules",
   "retrieval": {
@@ -152,12 +152,11 @@
         "rank": 1,
         "top": [
           "https://wasalt.sa/en",
-          "https://wasalt.sa/en",
-          "https://www.darglobal.co.uk/aida-360"
+          "https://wasalt.sa/en"
         ]
       }
     ],
-    "measured_at": "2026-11-23T06:03:23+00:00"
+    "measured_at": "2026-11-23T06:12:01+00:00"
   },
   "retrieval_remote": {
     "hit_at_5": 1.0,
@@ -392,7 +391,7 @@
           "mode": "rules"
         }
       ],
-      "measured_at": "2026-11-23T06:03:23+00:00"
+      "measured_at": "2026-11-23T06:12:01+00:00"
     },
     "llm": {
       "intent_accuracy": 1.0,

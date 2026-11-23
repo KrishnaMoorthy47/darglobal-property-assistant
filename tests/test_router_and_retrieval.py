@@ -162,3 +162,14 @@ def test_rent_stats_only_use_yearly_rents():
             for p, f in [(50000, "yearly"), (60000, "yearly"), (70000, "yearly"), (5000, None), (4000, "monthly")]]
     (st,) = Store._stats(rows)
     assert st["count"] == 3 and st["min"] == 50000
+
+
+def test_wasalt_only_search_ignores_darglobal_projects():
+    from app.rag.chat import retrieve
+    from app.rag.router import Route
+    s = get_store()
+    q = "Da Vinci Tower payment plan"
+    r = Route.model_validate({"intent": "knowledge", "project_names": ["Da Vinci Tower"], "search_query": q})
+    ctx = retrieve(r, q, "wasalt", s.embed(q))
+    assert all(p["source"] == "wasalt" for p in ctx["properties"])
+    assert all(c["source"] == "wasalt" for c in ctx["chunks"])
